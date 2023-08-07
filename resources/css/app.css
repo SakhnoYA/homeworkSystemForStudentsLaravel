@@ -1,0 +1,519 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+.header__content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    min-width: 1024px;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 40px 0 24px;
+    box-shadow: 0 1px 0 0 #e5e5e5;
+    height: 100px;
+}
+
+.header__button-login {
+    padding: 8px 20px;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.43;
+    cursor: pointer;
+    color: #000;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    outline: none;
+    background-color: #fff;
+    transition: .2s;
+    margin-left: auto;
+}
+
+.header__button-login:hover {
+    background-color: #f0f0f0;
+}
+
+button {
+    font-family: inherit;
+}
+
+.tabs {
+    list-style: none;
+    margin-left: 100px;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 1 0;
+}
+
+.tabs-tab {
+    align-items: center;
+    font-size: 19px;
+    text-decoration: none;
+    color: #222;
+    position: relative;
+}
+
+.header-logo {
+    height: 70px;
+}
+
+.github_link {
+    text-decoration: none;
+    color: #07c;
+}
+
+.dark-grey-background {
+    background: url(../images/map.jpg) center center/cover no-repeat;
+    /*background-color: rgb(231, 232, 236);*/
+}
+
+.footer {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-width: 1024px;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 40px 0 24px;
+    box-shadow: 0 1px 0 0 #e5e5e5;
+    height: 80px;
+}
+
+.footer-copyright {
+    margin-bottom: 5px;
+}
+
+.login__form {
+    margin-top: 20px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    margin-bottom: 8px;
+}
+
+.main__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.login__form-input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 36px;
+    padding: 8px 12px;
+    line-height: 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    text-overflow: ellipsis;
+    background-color: #F0F2F5;
+    margin-bottom: 16px;
+}
+
+.login__modal {
+    width: 25.333333%;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 32px 24px;
+}
+
+.mt6rem {
+    margin-top: 6rem;
+}
+
+.mt1rem {
+    margin-top: 1rem;
+}
+
+.mt7px {
+    margin-top: 7px;
+}
+
+.register__modal {
+    width: 25.333333%;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 18px 24px;
+}
+
+.login__header {
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.enter__link {
+    font-size: 19px;
+    height: 44px;
+    font-weight: 500;
+    line-height: 44px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #FFF;
+    align-items: center;
+    display: flex;
+    border-radius: 8px;
+    border: 0;
+    justify-content: center;
+    width: 100%;
+    background-color: #2d81e0;
+}
+
+.register__modal-link {
+    text-decoration: none;
+    font-size: 19px;
+    height: 44px;
+    font-weight: 500;
+    line-height: 44px;
+    cursor: pointer;
+    color: #FFF;
+    align-items: center;
+    display: flex;
+    border-radius: 8px;
+    border: 0;
+    justify-content: center;
+    width: 100%;
+    background-color: #4BB34B;
+}
+
+.register__header {
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    /*margin-top: 16px;*/
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.fs18 {
+    font-size: 18px;
+}
+
+.radio {
+    margin-bottom: 10px;
+}
+
+.radio-label {
+    margin-right: 25px;
+}
+
+.mb6rem {
+    margin-bottom: 6rem;
+}
+
+.mb1rem {
+    margin-bottom: 1rem;
+}
+
+.errorMessage {
+    color: #e64646;
+    font-size: 13px;
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
+.tabs li {
+    display: inline-block;
+    padding: 0 12px;
+}
+
+.tabs-tab_active {
+    color: #f33;
+}
+
+.tabs-tab_active:before {
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    height: 4px;
+    content: "";
+    background-color: red;
+}
+
+.tg {
+    border-collapse: separate;
+    border-spacing: 2px;
+    background-color: rgb(40, 51, 63);
+}
+
+.tg td {
+    background-color: #202932;
+    border: 1px solid rgb(36, 46, 57);
+    color: white;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.tg th {
+    background-color: #202932;
+    color: #fff;;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+}
+
+.tg .tg-hmp3 {
+    background-color: rgb(40, 51, 63);
+    text-align: center;
+    vertical-align: center
+}
+
+.tg .tg-amwm {
+    font-weight: bold;
+    text-align: center;
+    vertical-align: center;
+}
+
+.tg .tg-0lax {
+    text-align: center;
+    vertical-align: center
+}
+
+.header__subcontent {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    min-width: 1024px;
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 40px 0 24px;
+    box-shadow: 0 1px 0 0 #e5e5e5;
+    height: 50px;
+}
+
+
+.header__subcontent-button {
+    text-decoration: none;
+    padding: 8px 20px;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.43;
+    cursor: pointer;
+    color: #000;
+}
+
+.fs17 {
+    font-size: 17px;
+}
+
+.fs15 {
+    font-size: 15px;
+}
+
+.bd-none {
+    border: none;
+}
+
+.fw300 {
+    font-weight: 300;
+}
+
+.table-button {
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 4px;
+    background-color: #54a1a0;
+}
+
+textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+.h200 {
+    height: 200px;
+}
+
+.h50 {
+    height: 50px;
+}
+
+
+.dropdown-check-list {
+    display: inline-block;
+    /*position: relative; !* Добавлено *!*/
+}
+
+.dropdown-check-list .anchor {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: 5px 50px 5px 10px;
+    border: 1px solid #ccc;
+}
+
+.dropdown-check-list .anchor:after {
+    position: absolute;
+    content: "";
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    padding: 5px;
+    right: 10px;
+    transform: rotate(-135deg);
+}
+
+.dropdown-check-list .anchor:active:after {
+    right: 8px;
+    top: 21%;
+}
+
+.dropdown-check-list ul.items {
+    padding: 2px;
+    display: none;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    position: absolute; /* Изменено */
+    z-index: 1; /* Добавлено */
+}
+
+.dropdown-check-list ul.items li {
+    list-style: none;
+}
+
+.dropdown-check-list.visible .anchor {
+    color: #0094ff;
+}
+
+.dropdown-check-list.visible .items {
+    display: block;
+    background-color: white;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.label-input {
+    /*width: 100%;*/
+    display: block;
+}
+
+
+.mb16px {
+    margin-bottom: 16px;
+}
+
+.mb0 {
+    margin-bottom: 0;
+}
+
+.w40p {
+    width: 40%;
+}
+
+.mt4rem {
+    margin-top: 4rem;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+/* Tooltip text */
+.tooltip .tooltip-text {
+    visibility: hidden;
+    width: 400px;
+    background-color: black;
+    color: #fff;
+    padding: 5px 5px;
+    border-radius: 6px;
+    text-align: left;
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    font-size: 13px;
+    top: -10px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
+.divwithtooltip {
+    display: flex;
+    align-items: baseline;
+    justify-content: left;
+}
+
+.mb4rem{
+    margin-bottom: 4rem;
+}
+
+.width-auto{
+    width: auto;
+}
+
+.dark-slay-gray{
+    background-color: darkslategrey;
+    color:white;
+    font-weight: 500;
+}
+
+.padding-20-20{
+    padding: 20px 20px;
+}
+
+.accessRequestForm{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-radio{
+    display: flex;
+    flex-direction: column
+}
+
+.mb5px{
+    margin-bottom: 5px;
+}
+
+.correct{
+    border: 8px solid green;
+}
+.wrong{
+    border: 8px solid red;
+}
+.role{
+    margin-bottom: 5px;
+}
+
+.policy{
+    text-decoration: none;
+}
