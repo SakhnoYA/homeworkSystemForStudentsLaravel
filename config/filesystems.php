@@ -32,7 +32,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => storage_path(),
             'throw' => false,
         ],
 
@@ -56,6 +56,18 @@ return [
             'throw' => false,
         ],
 
+        'sftp' => [
+            'driver' => 'sftp',
+            'host' => env('SFTP_HOST'),
+            'port' => (int) env('SFTP_PORT', 22),
+            'username' => env('SFTP_USERNAME'),
+            'password' => env('SFTP_PASSWORD'),
+            'root' => env('SFTP_ROOT'),
+//            'permPublic' => 0755,
+//            'directoryPerm' => 0755,
+//            'visibility' => 'public',
+//            'timeout' => 111,
+        ],
     ],
 
     /*
