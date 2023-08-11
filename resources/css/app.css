@@ -127,6 +127,34 @@ main {
     margin-bottom: 16px;
 }
 
+.login__form-input:hover {
+    border: 1px solid rgba(0, 0, 0, 0.40);
+}
+
+.login__form-input:focus {
+    border: 2px solid #2688eb;
+    outline: none
+}
+
+.login__form-input.error {
+    background-color: #faebeb;
+    border-color: #e64646;
+}
+
+.alert {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+}
+
+
+.alert-danger {
+    color: #721c24;
+    background-color: #faebeb;;
+    border-color: #f5c6cb;
+}
+
 .login__modal {
     width: 25.333333%;
     background-color: #fff;
@@ -387,7 +415,9 @@ textarea {
     right: 8px;
     top: 21%;
 }
-
+.no-margin{
+    margin: 0;
+}
 .dropdown-check-list ul.items {
     padding: 2px;
     display: none;
@@ -400,6 +430,12 @@ textarea {
 
 .dropdown-check-list ul.items li {
     list-style: none;
+}
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d0e9c6;
+    color: #3c763d;
 }
 
 .dropdown-check-list.visible .anchor {
@@ -470,50 +506,52 @@ textarea {
     justify-content: left;
 }
 
-.mb4rem{
+.mb4rem {
     margin-bottom: 4rem;
 }
 
-.width-auto{
+.width-auto {
     width: auto;
 }
 
-.dark-slay-gray{
+.dark-slay-gray {
     background-color: darkslategrey;
-    color:white;
+    color: white;
     font-weight: 500;
 }
 
-.padding-20-20{
+.padding-20-20 {
     padding: 20px 20px;
 }
 
-.accessRequestForm{
+.accessRequestForm {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
 }
 
-.flex-radio{
+.flex-radio {
     display: flex;
     flex-direction: column
 }
 
-.mb5px{
+.mb5px {
     margin-bottom: 5px;
 }
 
-.correct{
+.correct {
     border: 8px solid green;
 }
-.wrong{
+
+.wrong {
     border: 8px solid red;
 }
-.role{
+
+.role {
     margin-bottom: 5px;
 }
 
-.policy{
+.policy {
     text-decoration: none;
 }
