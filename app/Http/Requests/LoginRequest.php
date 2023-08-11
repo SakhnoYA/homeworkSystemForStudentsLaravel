@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Confirmed;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -22,7 +23,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'login' => ['bail', 'required', 'integer', 'exists:users,id', 'max:2147483647', 'min:1', new Confirmed],
+            'password' => ['bail', 'required', 'min:4', 'max:30']
         ];
     }
 
@@ -31,11 +33,17 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, string>
      */
-//    public function messages(): array
-//    {
-//        return [
-//            'title.required' => 'A title is required',
-//            'body.required' => 'A message is required',
-//        ];
-//    }
+    public function messages(): array
+    {
+        return [
+            'login.required' => 'Поле ID обязательно',
+            'login.integer' => 'ID должен быть числом',
+            'login.exists' => 'Данный ID отсутствует в системе',
+            'login.max' => 'ID не может быть больше 2147483647',
+            'login.min' => 'ID должен быть положительным числом',
+            'password.required' => 'Пароль обязателен',
+            'password.min' => 'Пароль должен содержать минимум 4 символа',
+            'password.max' => 'Пароль должно содержать максимум 30 символов',
+        ];
+    }
 }
