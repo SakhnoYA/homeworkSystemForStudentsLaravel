@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegistrationRequest;
+use App\Models\User;
+use Auth;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
@@ -22,20 +27,35 @@ class UserController extends Controller
      */
     public function create()
     {
-        //создание пользователя 1
     }
-
-    public function createWithoutConfirm()
+    public function register()
     {
-        //создание пользователя 2
+        return view('basic.registration');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RegistrationRequest $request)
     {
-        //сохранение пользователя
+        $user = User::create([
+            'id'=> $request->id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'password' => $request->password,
+            'user_type_id' => $request->user_type_id,
+            'ip' => $request->ip(),
+//            'is_confirmed' => false,
+//            'remember_token' => $request->word(),
+//            'created_at' => now(),
+//            'updated_at' => now(),
+//            'deleted_at' => null,
+        ]);
+
+        session()->flash('success', 'Заявка на регистрацию отправлена');
+        Auth::login($user);
+        return redirect()->route('login');
     }
 
     /**

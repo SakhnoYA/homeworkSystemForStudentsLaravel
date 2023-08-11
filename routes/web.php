@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,15 +42,13 @@ Route::group(['prefix' => 'admin'], function () {
 //    Route::resource('/posts', 'PostController');
 });
 
-Route::get('/', function () {
-    return view('basic.login');
-})->name('home');
-
-Route::get('/registration', function () {
-    return view('basic.registration');
-})->name('registration');
-
 Route::get('/policy', function () {
     return view('basic.policy');
 })->name('policy');
 
+//Route::group(['middleware' => 'guest'], function () {
+    Route::get('/registration', [UserController::class, 'register'])->name('registration');
+    Route::post('/registration', [UserController::class, 'store'])->name('registration.store');
+    Route::get('/', [AuthController::class, 'loginForm'])->name('login');
+    Route::post('/', [AuthController::class, 'login'])->name('login.store');
+//});
