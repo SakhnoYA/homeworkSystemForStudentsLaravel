@@ -36,6 +36,13 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \App\Http\Middleware\AddContentSecurityPolicyHeaders::class,
+            \Treblle\SecurityHeaders\Http\Middleware\RemoveHeaders::class,
+            \Treblle\SecurityHeaders\Http\Middleware\StrictTransportSecurity::class,
+            \Treblle\SecurityHeaders\Http\Middleware\SetReferrerPolicy::class,
+            \Treblle\SecurityHeaders\Http\Middleware\PermissionsPolicy::class,
+            \Treblle\SecurityHeaders\Http\Middleware\ContentTypeOptions::class,
+            \Treblle\SecurityHeaders\Http\Middleware\CertificateTransparencyPolicy::class,
         ],
 
         'api' => [
