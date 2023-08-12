@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -30,9 +30,9 @@ class User extends Authenticatable
 
     public $incrementing = false;
 
-    public function type(): HasOne
+    public function user_type(): belongsTo
     {
-        return $this->hasOne(UserType::class);
+        return $this->belongsTo(UserType::class);
     }
 
     public function courses(): HasMany
