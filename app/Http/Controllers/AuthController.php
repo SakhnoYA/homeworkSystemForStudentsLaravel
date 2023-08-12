@@ -14,7 +14,18 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        dd($request);
+        $credentials = $request->getCredentials();
+
+        if(!Auth::validate($credentials)):
+            return redirect()->to('login')
+                ->withErrors(trans('auth.failed'));
+        endif;
+
+        $user = Auth::getProvider()->retrieveByCredentials($credentials);
+
+        Auth::login($user);
+
+        return $this->authenticated($request, $user);
     }
 
 }

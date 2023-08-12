@@ -54,7 +54,6 @@ class UserController extends Controller
         ]);
 
         session()->flash('success', 'Заявка на регистрацию отправлена');
-        Auth::login($user);
         return redirect()->route('login');
     }
 

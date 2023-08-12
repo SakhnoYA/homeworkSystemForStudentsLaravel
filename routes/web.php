@@ -42,6 +42,17 @@ Route::group(['prefix' => 'admin'], function () {
 //    Route::resource('/posts', 'PostController');
 });
 
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
+    Route::get('/', 'MainController@index')->name('admin.index');
+    Route::resource('/categories', 'CategoryController');
+    Route::resource('/tags', 'TagController');
+    Route::resource('/posts', 'PostController');
+});
+
+Route::get('phpmyinfo', function () {
+    phpinfo();
+})->name('phpmyinfo');
+
 Route::get('/policy', function () {
     return view('basic.policy');
 })->name('policy');
