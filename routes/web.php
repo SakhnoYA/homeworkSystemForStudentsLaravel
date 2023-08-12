@@ -16,10 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
-Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('admin.index');
+//Route::group(['prefix' => 'admin'], function () {
+////    Route::get('/', function () {
+////        return view('admin.index');
+////    })->name('admin.index');
     Route::get('/registrations', function () {
         return view('admin.registrations');
     })->name('admin.registrations');
@@ -35,21 +35,26 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/edit_user', function () {
         return view('admin.edit_user');
     })->name('admin.edit_user');
-//    Route::get('/', 'MainController@index')->name('admin.index');
+////    Route::get('/', 'MainController@index')->name('admin.index');
+////    Route::resource('/categories', 'CategoryController');
+////    Route::resource('/tags', 'TagController');
+////    Route::resource('/posts', 'PostController');
+//});
+
+//Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
+Route::group(['prefix' => 'admin'], function () {
+//    Route::get('', 'MainController@index')->name('admin.index');
 //    Route::resource('/categories', 'CategoryController');
+    Route::get('/users/{type}', [UserController::class, 'index'])->name('admin.index');
+
+    Route::resource('/users', UserController::class, ['except' => 'create']);
+//    Route::resource('/users', UserController::class);
 //    Route::resource('/tags', 'TagController');
 //    Route::resource('/posts', 'PostController');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
-    Route::get('/', 'MainController@index')->name('admin.index');
-    Route::resource('/categories', 'CategoryController');
-    Route::resource('/tags', 'TagController');
-    Route::resource('/posts', 'PostController');
-});
-
-Route::get('phpmyinfo', function (Request $request) {
-   phpinfo();
+Route::get('phpmyinfo', function () {
+    phpinfo();
 })->name('phpmyinfo');
 
 Route::get('/policy', function () {

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Filters\UserFilter;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+
+use function dd;
 
 
 class UserController extends Controller
@@ -12,12 +15,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($type)
     {
-        //отображение всех пользователей с категоризацией
-//        return view('user.index', [
-//            'users' => DB::table('users')->paginate(15)
-//        ]);
+        return view('admin.index', [
+            'users' => User::filter(
+                UserFilter::make([
+                    'type' => $type,
+                ])
+            )->paginate(15)
+        ]);
     }
 
     /**

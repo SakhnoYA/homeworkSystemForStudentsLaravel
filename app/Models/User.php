@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Kblais\QueryFilter\Filterable;
 class User extends Authenticatable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Filterable;
 
     /**
      * The attributes that are mass assignable.
@@ -39,4 +39,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Course::class);
     }
+
 }

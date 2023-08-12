@@ -17,6 +17,7 @@ html {
 }
 
 .header__button-login {
+    text-decoration: none;
     padding: 8px 20px;
     font-size: 19px;
     font-weight: 500;
