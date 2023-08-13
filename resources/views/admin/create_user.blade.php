@@ -43,7 +43,8 @@
                     <ul class="items">
                         @foreach ($courses as $course)
                             <li><input type="checkbox" name="attachCourses[]"
-                                       value="{{ $course['id'] }}"/>{{ $course['title'] }}</li>
+                                       @if(old('attachCourses') !== null && in_array($course['id'], old('attachCourses'))) checked
+                                       @endif value="{{ $course['id'] }}"/>{{ $course['title'] }}</li>
                         @endforeach
                     </ul>
                 </div>

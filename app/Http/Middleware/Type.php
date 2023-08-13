@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-use function dd;
-
 class Type
 {
     /**
@@ -20,8 +18,12 @@ class Type
     {
         $user = Auth::user();
 
-        if (!$user) {
+        if (!$user && !in_array('guest', $roles)) {
             return redirect()->route('login');
+        }
+
+        if (!$user && in_array('guest', $roles)) {
+            return $next($request);
         }
 
         if (in_array($user->user_type->name, $roles)) {

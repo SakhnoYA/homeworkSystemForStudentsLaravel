@@ -28,15 +28,19 @@
                 @method('PUT')
                 <label>
                     Фамилия
-                    <input type="text" name="last_name" class="login__form-input @error('last_name') error @enderror" value="{{ $user['last_name'] }}">
+                    <input type="text" name="last_name" class="login__form-input @error('last_name') error @enderror"
+                           value="{{ $user['last_name'] }}">
                 </label>
                 <label>
                     Имя
-                    <input type="text" name="first_name" class="login__form-input @error('first_name') error @enderror" value="{{ $user['first_name'] }}">
+                    <input type="text" name="first_name" class="login__form-input @error('first_name') error @enderror"
+                           value="{{ $user['first_name'] }}">
                 </label>
                 <label>
                     Отчество
-                    <input type="text" name="middle_name" class="login__form-input @error('middle_name') error @enderror" value="{{ $user['middle_name'] }}">
+                    <input type="text" name="middle_name"
+                           class="login__form-input @error('middle_name') error @enderror"
+                           value="{{ $user['middle_name'] }}">
                 </label>
                 <div class="role">Тип пользователя: {{ $user->user_type->readable_name }}</div>
                 <div class="dropdown-check-list mt1rem" tabindex="100">
@@ -44,6 +48,8 @@
                     <ul class="items">
                         @foreach ($unattachedCourses as $course)
                             <li><input type="checkbox" name="attachCourses[]"
+                                       @if(old('attachCourses') !== null && in_array($course['id'], old('attachCourses'))) checked
+                                       @endif
                                        value="{{ $course['id'] }}"/>{{ $course['title'] }}</li>
                         @endforeach
                     </ul>
@@ -53,11 +59,13 @@
                     <ul class="items">
                         @foreach ($user->courses as $course)
                             <li><input type="checkbox" name="detachCourses[]"
+                                       @if(old('detachCourses') !== null && in_array($course['id'], old('detachCourses'))) checked
+                                       @endif
                                        value="{{ $course['id'] }}"/>{{ $course['title'] }}</li>
                         @endforeach
                     </ul>
                 </div>
-            <button type="submit" class="enter__link mt1rem">Сохранить</button>
+                <button type="submit" class="enter__link mt1rem">Сохранить</button>
             </form>
             <form action="{{ route('users.destroy', $user['id']) }}" method="post">
                 @csrf

@@ -64,9 +64,12 @@ Route::get('/policy', function () {
     return view('basic.policy');
 })->name('policy');
 
+Route::post('registration', [UserController::class, 'store'])->middleware('type:guest,admin')->name(
+    'registration.store'
+);
+
 Route::group(['middleware' => 'guest'], function () {
     Route::get('registration', [UserController::class, 'register'])->name('registration');
-    Route::post('registration', [UserController::class, 'store'])->name('registration.store');
     Route::get('', [AuthController::class, 'loginForm'])->name('login');
     Route::post('', [AuthController::class, 'login'])->name('login.store');
 });
