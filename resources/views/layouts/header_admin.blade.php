@@ -6,8 +6,8 @@
                class="tabs-tab @if (Route::is('admin.index')) tabs-tab_active @endif">Пользователи</a>
         </li>
         <li>
-            <a href="{{ route('admin.registrations') }}"
-               class="tabs-tab @if (Route::is('admin.registrations')) tabs-tab_active @endif">Регистрации</a>
+            <a href="{{ route('registrations.index') }}"
+               class="tabs-tab @if (Route::is('registrations.index')) tabs-tab_active @endif">Регистрации</a>
         </li>
         <li>
             <a href="{{ route('admin.create_course') }}"

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,9 @@ use Illuminate\Support\Facades\Route;
 ////    Route::get('/', function () {
 ////        return view('admin.index');
 ////    })->name('admin.index');
-Route::get('/registrations', function () {
-    return view('admin.registrations');
-})->name('admin.registrations');
+//Route::get('/registrations', function () {
+//    return view('admin.registrations');
+//})->name('admin.registrations');
 Route::get('/create_course', function () {
     return view('admin.create_course');
 })->name('admin.create_course');
@@ -43,11 +44,14 @@ Route::get('/edit_user', function () {
 
 //Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
 Route::group(['prefix' => 'admin'], function () {
-//    Route::get('', 'MainController@index')->name('admin.index');
 //    Route::resource('/categories', 'CategoryController');
     Route::get('/users/{type}', [UserController::class, 'index'])->name('admin.index');
 
-    Route::resource('/users', UserController::class, ['except' => 'create']);
+    Route::resource('users', UserController::class, ['except' => 'create']);
+    Route::get('registrations', [RegistrationController::class, 'index'])->name('registrations.index');
+    Route::delete('registrations/{id}', [RegistrationController::class, 'destroy'])->name('registrations.destroy');
+    Route::delete('registrations', [RegistrationController::class, 'destroyAll'])->name('registrations.destroyAll');
+    Route::put('registrations/{id}', [RegistrationController::class, 'update'])->name('registrations.update');
 //    Route::resource('/users', UserController::class);
 //    Route::resource('/tags', 'TagController');
 //    Route::resource('/posts', 'PostController');
