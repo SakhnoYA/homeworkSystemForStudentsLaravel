@@ -10,8 +10,8 @@
                class="tabs-tab @if (Route::is('registrations.index')) tabs-tab_active @endif">Регистрации</a>
         </li>
         <li>
-            <a href="{{ route('admin.create_course') }}"
-               class="tabs-tab @if (Route::is('admin.create_course')) tabs-tab_active @endif">Создание курса</a>
+            <a href="{{ route('course.create') }}"
+               class="tabs-tab @if (Route::is('course.create')) tabs-tab_active @endif">Создание курса</a>
         </li>
         <li>
             <a href="{{ route('admin.access_requests') }}"

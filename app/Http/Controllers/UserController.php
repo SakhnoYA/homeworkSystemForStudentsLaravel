@@ -45,16 +45,18 @@ class UserController extends Controller
      */
     public function store(RegistrationRequest $request)
     {
-        $user = User::create([
-            'id' => $request->get('id'),
-            'first_name' => $request->get('first_name'),
-            'last_name' => $request->get('last_name'),
-            'middle_name' => $request->get('middle_name'),
-            'password' => $request->get('password'),
-            'user_type_id' => $request->get('user_type_id'),
-            'ip' => $request->ip(),
-            'is_confirmed' => $request->get('is_confirmed') ?? false,
-        ]);
+//        $user = User::create([
+//            'id' => $request->get('id'),
+//            'first_name' => $request->get('first_name'),
+//            'last_name' => $request->get('last_name'),
+//            'middle_name' => $request->get('middle_name'),
+//            'password' => $request->get('password'),
+//            'user_type_id' => $request->get('user_type_id'),
+//            'ip' => $request->ip(),
+//            'is_confirmed' => $request->get('is_confirmed') ?? false,
+//        ]);
+
+        $user = User::create($request->except('_token'));
 
         if ($request->has('attachCourses')) {
             foreach ($request->input('attachCourses') as $course) {

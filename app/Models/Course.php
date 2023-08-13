@@ -12,7 +12,16 @@ class Course extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'title',
+        'description',
+        'start_date',
+        'end_date',
+        'difficulty_level',
+        'category',
+        'availability',
+        'updated_by'
+    ];
 
     public function users(): BelongsToMany
     {

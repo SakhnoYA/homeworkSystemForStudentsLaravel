@@ -19,4 +19,5 @@ class Confirmed implements ValidationRule
             $fail('Ваш профиль не подтвержден администратором.');
         }
     }
+
 }
