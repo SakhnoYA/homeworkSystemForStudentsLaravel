@@ -30,9 +30,9 @@ Route::get('/create_course', function () {
 Route::get('/access_requests', function () {
     return view('admin.access_requests');
 })->name('admin.access_requests');
-Route::get('/create_user', function () {
-    return view('admin.create_user');
-})->name('admin.create_user');
+//Route::get('/create_user', function () {
+//    return view('admin.create_user');
+//})->name('admin.create_user');
 Route::get('/edit_user', function () {
     return view('admin.edit_user');
 })->name('admin.edit_user');
@@ -45,9 +45,12 @@ Route::get('/edit_user', function () {
 //Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
 Route::group(['prefix' => 'admin'], function () {
 //    Route::resource('/categories', 'CategoryController');
-    Route::get('/users/{type}', [UserController::class, 'index'])->name('admin.index');
+//    Route::get('users/create_user', [UserController::class, 'create'])->name('users.create');
+//    Route::get('users/{type}', [UserController::class, 'index'])->name('admin.index');
+    Route::resource('users', UserController::class)->names([
+        'index' => 'admin.index'
+    ]);;
 
-    Route::resource('users', UserController::class, ['except' => 'create']);
     Route::get('registrations', [RegistrationController::class, 'index'])->name('registrations.index');
     Route::delete('registrations/{id}', [RegistrationController::class, 'destroy'])->name('registrations.destroy');
     Route::delete('registrations', [RegistrationController::class, 'destroyAll'])->name('registrations.destroyAll');
@@ -57,9 +60,7 @@ Route::group(['prefix' => 'admin'], function () {
 //    Route::resource('/posts', 'PostController');
 });
 
-Route::get('phpmyinfo', function () {
-    phpinfo();
-})->name('phpmyinfo');
+
 
 Route::get('/policy', function () {
     return view('basic.policy');

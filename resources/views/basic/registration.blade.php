@@ -23,15 +23,11 @@
             <form class="login__form" method="post" action="{{ route('registration.store') }}">
                 @csrf
                 <input type="number" name="id" class="login__form-input @error('id') error @enderror" placeholder="ID" value="{{ old('id') }}">
-                <input type="text" name="first_name" class="login__form-input @error('first_name') error @enderror" placeholder="Имя"
-                       value="{{ old('first_name') }}">
-                <input type="text" name="last_name" class="login__form-input @error('last_name') error @enderror" placeholder="Фамилия"
-                       value="{{ old('last_name') }}">
-                <input type="text" name="middle_name" class="login__form-input @error('middle_name') error @enderror" placeholder="Отчество"
-                       value="{{ old('middle_name') }}">
+                <input type="text" name="first_name" class="login__form-input @error('first_name') error @enderror" placeholder="Имя" value="{{ old('first_name') }}">
+                <input type="text" name="last_name" class="login__form-input @error('last_name') error @enderror" placeholder="Фамилия" value="{{ old('last_name') }}">
+                <input type="text" name="middle_name" class="login__form-input @error('middle_name') error @enderror" placeholder="Отчество" value="{{ old('middle_name') }}">
                 <input type="password" name="password" class="login__form-input @error('password') error @enderror" placeholder="Пароль">
-                <input type="password" name="password_confirmation" class="login__form-input @error('password_confirmation') error @enderror"
-                       placeholder="Повторите пароль">
+                <input type="password" name="password_confirmation" class="login__form-input @error('password_confirmation') error @enderror" placeholder="Повторите пароль">
 
                 <div class="radio">
                     <label class="radio-label">

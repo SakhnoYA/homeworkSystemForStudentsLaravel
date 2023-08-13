@@ -9,17 +9,17 @@
 @section('header__subcontent')
     <div class="header__subcontent">
         <div>
-            <a href="{{ route('admin.index', 0) }}" class="header__button-login bd-none fw300 fs17">Все
+            <a href="{{ route('admin.index') }}" class="header__button-login bd-none fw300 fs17">Все
                 пользователи
             </a>
-            <a href="{{ route('admin.index', 3) }}" class="header__button-login bd-none fw300 fs17">
+            <a href="{{ route('admin.index', ['type'=>3]) }}" class="header__button-login bd-none fw300 fs17">
                 Преподаватели
             </a>
-            <a href="{{ route('admin.index', 2) }}" class="header__button-login bd-none fw300 fs17">Студенты
+            <a href="{{ route('admin.index', ['type'=>2]) }}" class="header__button-login bd-none fw300 fs17">Студенты
             </a>
         </div>
         <div>
-            <a href="{{route('admin.create_user')}}" class="header__button-login  fs17">
+            <a href="{{route('users.create')}}" class="header__button-login  fs17">
                 Создать нового пользователя
             </a>
         </div>
@@ -72,6 +72,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $users->links() }}
+        {{ $users->appends(request()->input())->links() }}
     </div>
 @endsection

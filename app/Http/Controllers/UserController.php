@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\UserFilter;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\Course;
@@ -10,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 use function dd;
+use function redirect;
+use function session;
 
 
 class UserController extends Controller
@@ -17,14 +18,12 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index($type)
+    public function index(Request $request)
     {
         return view('admin.index', [
-            'users' => User::filter(
-                UserFilter::make([
-                    'type' => $type,
-                ])
-            )->with('user_type')->paginate(15)
+            'users' => User::when($request->has('type'), function ($query) use ($request) {
+                $query->where('user_type_id', $request->input('type'));
+            })->with('user_type')->paginate(15)
         ]);
     }
 
@@ -33,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.create_user');
+        return view('admin.create_user',['courses' => Course::all()]);
     }
 
     public function register()
@@ -46,7 +45,7 @@ class UserController extends Controller
      */
     public function store(RegistrationRequest $request)
     {
-        User::create([
+        $user = User::create([
             'id' => $request->get('id'),
             'first_name' => $request->get('first_name'),
             'last_name' => $request->get('last_name'),
@@ -54,15 +53,21 @@ class UserController extends Controller
             'password' => $request->get('password'),
             'user_type_id' => $request->get('user_type_id'),
             'ip' => $request->ip(),
-//            'is_confirmed' => false,
-//            'remember_token' => $request->word(),
-//            'created_at' => now(),
-//            'updated_at' => now(),
-//            'deleted_at' => null,
+            'is_confirmed' => $request->get('is_confirmed') ?? false,
         ]);
 
-        session()->flash('success', 'Заявка на регистрацию отправлена');
-        return redirect()->route('login');
+        if ($request->has('attachCourses')) {
+            foreach ($request->input('attachCourses') as $course) {
+                $user->courses()->attach($course, ['is_confirmed' => true]);
+            }
+        }
+
+        if(!$request->get('is_confirmed')){
+            session()->flash('success', 'Заявка на регистрацию отправлена');
+            return redirect()->route('login');
+        }
+        session()->flash('success', 'Пользователь создан');
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -105,7 +110,7 @@ class UserController extends Controller
                 $user->courses()->detach($course);
             }
         }
-        return redirect()->route('admin.index', 0)->with('success', 'Изменения сохранены');
+        return redirect()->route('admin.index')->with('success', 'Изменения сохранены');
     }
 
     /**
@@ -118,6 +123,6 @@ class UserController extends Controller
 //            return redirect()->route('tags.index')->with('error', 'Ошибка! У тегов есть записи');
 //        }
         $user->delete();
-        return redirect()->route('admin.index', 0)->with('success', 'Пользователь удален');
+        return redirect()->route('admin.index')->with('success', 'Пользователь удален');
     }
 }

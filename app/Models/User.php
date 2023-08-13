@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Kblais\QueryFilter\Filterable;
 class User extends Authenticatable
 {
-    use HasFactory, SoftDeletes, Filterable;
+    use HasFactory, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

@@ -78,6 +78,6 @@
                 </table>
             @endif
         </div>
-
+        {{ $users->appends(request()->input())->links() }}
     </div>
 @endsection

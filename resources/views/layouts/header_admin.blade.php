@@ -2,7 +2,7 @@
     <img src="{{ Vite::asset('resources/images/icon.png') }}" class="header-logo" alt="Homework System logo">
     <ul class="tabs">
         <li>
-            <a href="{{ route('admin.index', 0) }}"
+            <a href="{{ route('admin.index') }}"
                class="tabs-tab @if (Route::is('admin.index')) tabs-tab_active @endif">Пользователи</a>
         </li>
         <li>
