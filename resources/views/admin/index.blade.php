@@ -8,7 +8,7 @@
 
 @section('header__subcontent')
     <div class="header__subcontent">
-        <form method="get">
+        <div>
             <a href="{{ route('admin.index', 0) }}" class="header__button-login bd-none fw300 fs17">Все
                 пользователи
             </a>
@@ -17,15 +17,22 @@
             </a>
             <a href="{{ route('admin.index', 2) }}" class="header__button-login bd-none fw300 fs17">Студенты
             </a>
-        </form>
-        <a href="{{route('admin.create_user')}}">
-            <button type="submit" class=" header__button-login  fs17"> Создать нового пользователя</button>
-        </a>
+        </div>
+        <div>
+            <a href="{{route('admin.create_user')}}" class="header__button-login  fs17">
+                Создать нового пользователя
+            </a>
+        </div>
     </div>
 @endsection
 
 @section('main__content')
     <div class="main__content">
+        @if (session()->has('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="login__modal mt2rem mb1rem width-auto dark-slay-gray padding-20-20">
             <table class="tg">
                 <thead>
@@ -58,11 +65,7 @@
                         <td class="{{ $rowClass }}">{{ $user['ip'] }}</td>
                         <td class="{{ $rowClass }}">{{ $user['is_confirmed'] ? 'Имеется' : 'Отсутствует' }}</td>
                         <td class="{{ $rowClass }}">
-                            <form method="post">
-                                @csrf
-                                <input type="hidden" name="id" value="{{ $user['id'] }}">
-                                <button class="table-button" name="toCreateUser">Профиль</button>
-                            </form>
+                            <a class="table-button" href="{{ route('users.edit', $user['id']  ) }}">Профиль</a>
                         </td>
                     </tr>
                 @endforeach
