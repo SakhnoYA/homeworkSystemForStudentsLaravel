@@ -50,7 +50,7 @@
                     @endphp
                     <tr>
                         <td class="{{ $rowClass }}">{{ $user['id'] }}</td>
-                        <td class="{{ $rowClass }}">{{ date('Y-m-d H:i', strtotime($user['registration_date'])) }}</td>
+                        <td class="{{ $rowClass }}">{{ date('Y-m-d H:i', strtotime($user['created_at'])) }}</td>
                         <td class="{{ $rowClass }}">{{ $user['first_name'] }}</td>
                         <td class="{{ $rowClass }}">{{ $user['last_name'] }}</td>
                         <td class="{{ $rowClass }}">{{ $user['middle_name'] }}</td>
@@ -69,6 +69,6 @@
                 </tbody>
             </table>
         </div>
-
+        {{ $users->links() }}
     </div>
 @endsection

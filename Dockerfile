@@ -11,7 +11,7 @@ WORKDIR /var/www/html
 COPY . .
 COPY nginx-fpm.conf /etc/nginx/sites-available/default
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+RUN chmod o+w ./storage/ -R && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && composer install --no-dev --optimize-autoloader \
     && npm i
 

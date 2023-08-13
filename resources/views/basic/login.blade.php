@@ -45,7 +45,7 @@
     @endenv
 
     @production
-        <div class="main__content">
+        <div class="main__content" style="color: white">
             Система переписывается на Laravel
             <a href="https://hwsysold.sakhnoya.ru/">Старая версия </a>
         </div>

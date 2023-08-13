@@ -7,7 +7,6 @@ use App\Http\Requests\RegistrationRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-use function dd;
 
 
 class UserController extends Controller
@@ -22,7 +21,7 @@ class UserController extends Controller
                 UserFilter::make([
                     'type' => $type,
                 ])
-            )->paginate(15)
+            )->paginate(2)
         ]);
     }
 
