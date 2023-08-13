@@ -18,7 +18,7 @@
                class="tabs-tab @if (Route::is('admin.access_requests')) tabs-tab_active @endif">Запросы доступа</a>
         </li>
     </ul>
-    <form method="post">
-        <button type="submit" name="logout" class="header__button-login">Выйти</button>
-    </form>
+{{--    <form method="post">--}}
+        <a href="{{ route('logout') }}" class="header__button-login">Выйти</a>
+{{--    </form>--}}
 </div>

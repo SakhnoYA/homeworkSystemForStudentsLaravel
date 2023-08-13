@@ -29,7 +29,8 @@ class RegistrationRequest extends FormRequest
             'last_name' => ['bail', 'required', 'alpha', 'min:2', 'max:30', new Cyrillic],
             'middle_name' => ['bail', 'alpha', 'min:2', 'max:30', 'nullable', new Cyrillic],
             'password' => ['bail', 'required', 'min:4', 'max:30', 'confirmed'],
-            'policy' => ['accepted']
+            'policy' => ['accepted'],
+            'user_type_id'=> ['required']
         ];
     }
 
@@ -62,6 +63,7 @@ class RegistrationRequest extends FormRequest
             'password.min' => 'Пароль должен содержать минимум 4 символа',
             'password.max' => 'Пароль должно содержать максимум 30 символов',
             'password.confirmed' => 'Пароли не совпали',
+            'user_type_id.required'=> 'Роль обязательна'
         ];
     }
 }

@@ -42,14 +42,13 @@ Route::get('/edit_user', function () {
 ////    Route::resource('/posts', 'PostController');
 //});
 
-//Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'type:admin'], function () {
 //    Route::resource('/categories', 'CategoryController');
 //    Route::get('users/create_user', [UserController::class, 'create'])->name('users.create');
 //    Route::get('users/{type}', [UserController::class, 'index'])->name('admin.index');
     Route::resource('users', UserController::class)->names([
         'index' => 'admin.index'
-    ]);;
+    ]);
 
     Route::get('registrations', [RegistrationController::class, 'index'])->name('registrations.index');
     Route::delete('registrations/{id}', [RegistrationController::class, 'destroy'])->name('registrations.destroy');
@@ -61,14 +60,17 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-
 Route::get('/policy', function () {
     return view('basic.policy');
 })->name('policy');
 
-//Route::group(['middleware' => 'guest'], function () {
-Route::get('/registration', [UserController::class, 'register'])->name('registration');
-Route::post('/registration', [UserController::class, 'store'])->name('registration.store');
-Route::get('/', [AuthController::class, 'loginForm'])->name('login');
-Route::post('/', [AuthController::class, 'login'])->name('login.store');
-//});
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('registration', [UserController::class, 'register'])->name('registration');
+    Route::post('registration', [UserController::class, 'store'])->name('registration.store');
+    Route::get('', [AuthController::class, 'loginForm'])->name('login');
+    Route::post('', [AuthController::class, 'login'])->name('login.store');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+});

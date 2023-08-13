@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Services\RememberMeService;
 use Auth;
+use Illuminate\Http\Request;
+
+use function dd;
 
 class AuthController extends Controller
 {
@@ -44,4 +47,14 @@ class AuthController extends Controller
         return redirect()->back()->withErrors(['error' => 'Неверные входные данные']);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login');
+    }
 }

@@ -49,11 +49,12 @@
                 </div>
                 <div class="radio">
                     <label class="radio-label">
-                        <input type="radio" name="user_type_id" checked value="2">
+                        <input type="radio" name="user_type_id" @if(old('user_type_id')==2) checked @endif
+                        value="2">
                         Ученик
                     </label>
                     <label class="radio-label">
-                        <input type="radio" name="user_type_id" value="3">
+                        <input type="radio" name="user_type_id" @if(old('user_type_id')==3) checked @endif  value="3">
                         Преподаватель
                     </label>
                 </div>
