@@ -26,7 +26,7 @@
 
 @section('main__content')
     <div class="main__content">
-        <div class="login__modal mt6rem mb6rem width-auto dark-slay-gray padding-20-20">
+        <div class="login__modal mt2rem mb1rem width-auto dark-slay-gray padding-20-20">
             <table class="tg">
                 <thead>
                 <tr>
@@ -54,7 +54,7 @@
                         <td class="{{ $rowClass }}">{{ $user['first_name'] }}</td>
                         <td class="{{ $rowClass }}">{{ $user['last_name'] }}</td>
                         <td class="{{ $rowClass }}">{{ $user['middle_name'] }}</td>
-                        <td class="{{ $rowClass }}">{{ $user['readable_name'] }}</td>
+                        <td class="{{ $rowClass }}">{{ $user->user_type->readable_name }}</td>
                         <td class="{{ $rowClass }}">{{ $user['ip'] }}</td>
                         <td class="{{ $rowClass }}">{{ $user['is_confirmed'] ? 'Имеется' : 'Отсутствует' }}</td>
                         <td class="{{ $rowClass }}">

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         DB::listen(function (QueryExecuted $query) {
             Log::channel('sql_logs')->info($query->sql);
         });
+        Paginator::useBootstrapFour();
     }
 }
