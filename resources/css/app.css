@@ -625,3 +625,7 @@ a {
 .mt2rem {
     margin-top: 2rem;
 }
+
+.padding-0-200{
+    padding: 0 200px;
+}

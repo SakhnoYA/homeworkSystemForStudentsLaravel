@@ -29,18 +29,18 @@
                 <label>
                     Фамилия
                     <input type="text" name="last_name" class="login__form-input @error('last_name') error @enderror"
-                           value="{{ $user['last_name'] }}">
+                           value="{{ old('last_name') ?? $user['last_name'] }}">
                 </label>
                 <label>
                     Имя
                     <input type="text" name="first_name" class="login__form-input @error('first_name') error @enderror"
-                           value="{{ $user['first_name'] }}">
+                           value="{{ old('first_name') ??$user['first_name'] }}">
                 </label>
                 <label>
                     Отчество
                     <input type="text" name="middle_name"
                            class="login__form-input @error('middle_name') error @enderror"
-                           value="{{ $user['middle_name'] }}">
+                           value="{{ old('middle_name') ?? $user['middle_name'] }}">
                 </label>
                 <div class="role">Тип пользователя: {{ $user->user_type->readable_name }}</div>
                 <div class="dropdown-check-list mt1rem" tabindex="100">

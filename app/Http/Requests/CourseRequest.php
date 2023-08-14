@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Rules\Cyrillic;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateCourseRequest extends FormRequest
+class CourseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class CreateCourseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['bail', 'required', 'unique:courses,title','alpha', 'min:5', 'max:30', new Cyrillic],
+            'title' => ['bail', 'required','alpha', 'min:5', 'max:30', new Cyrillic],
             'start_date' => ['bail', 'date', 'nullable'],
             'end_date' => ['bail', 'date', 'after_or_equal:start_date', 'nullable'],
             'description' => ['bail', 'alpha', 'min:5', 'max:300', 'nullable', new Cyrillic],

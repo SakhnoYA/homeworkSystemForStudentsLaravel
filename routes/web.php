@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccessRequestController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseUserController;
 use App\Http\Controllers\RegistrationController;
@@ -58,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'type:admin'], function () {
     Route::delete('registrations', [RegistrationController::class, 'destroyAll'])->name('registrations.destroyAll');
     Route::put('registrations/{id}', [RegistrationController::class, 'update'])->name('registrations.update');
 
-    Route::resource('course', CourseController::class)->only([
+    Route::resource('course', AdminCourseController::class)->only([
         'create',
         'store',
     ]);
@@ -85,6 +86,9 @@ Route::post('registration', [UserController::class, 'store'])->middleware('type:
 );
 
 Route::resource('access_request', AccessRequestController::class)->only(['index','update'])->middleware('type:student,teacher');
+
+
+Route::resource('course', CourseController::class)->only(['index','update','show'])->middleware('type:student,teacher');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('registration', [UserController::class, 'register'])->name('registration');

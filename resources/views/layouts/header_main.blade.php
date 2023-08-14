@@ -3,5 +3,7 @@
     <ul class="tabs">
         @yield('tabs')
     </ul>
-    <a href="{{ route('logout') }}" class="header__button-login">Выйти</a>
+    <div>
+        <a href="{{ route('logout') }}" class="header__button-login">Выйти</a>
+    </div>
 </div>

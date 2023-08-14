@@ -41,7 +41,7 @@ class AuthController extends Controller
                 $rememberMeService->setRememberMeExpiration(Auth::user());
             }
 
-            return redirect()->route(Auth::user()->user_type->name . '.index');
+            return redirect()->route(Auth::user()->user_type->path . '.index');
         }
 
         return redirect()->back()->withErrors(['error' => 'Неверные входные данные']);

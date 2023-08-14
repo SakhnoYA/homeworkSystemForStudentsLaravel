@@ -7,7 +7,7 @@
 @endsection
 
 @section('main__content')
-    <div class="main__content">
+    <div class="main__content padding-0-200">
         @if (session()->has('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -56,6 +56,6 @@
                 </table>
             @endif
         </div>
-        {{ $users->appends(request()->input())->links() }}
+        {{ $confirmedAttachedCourses->appends(request()->input())->links() }}
     </div>
 @endsection
