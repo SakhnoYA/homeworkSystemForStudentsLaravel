@@ -7,8 +7,11 @@ use App\Models\Course;
 
 use Auth;
 
+use function view;
+
 class CourseController extends Controller
 {
+
     /**
      * Handle the incoming request.
      */

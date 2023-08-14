@@ -33,7 +33,7 @@
                     Дата окончания
                     <input type="date" name="end_date"
                            class="login__form-input mt7px @error('end_date') error @enderror"
-                           value="{{ old('end_date') ?? date('Y-m-d') }}">
+                           value="{{ old('end_date') }}">
                 </label>
                 <label class="label-input mb16px">
                     <input type="checkbox" name="availability" @if(old('availability') !== null) checked

@@ -14,11 +14,9 @@
                class="tabs-tab @if (Route::is('course.create')) tabs-tab_active @endif">Создание курса</a>
         </li>
         <li>
-            <a href="{{ route('admin.access_requests') }}"
-               class="tabs-tab @if (Route::is('admin.access_requests')) tabs-tab_active @endif">Запросы доступа</a>
+            <a href="{{ route('course_user.index') }}"
+               class="tabs-tab @if (Route::is('course_user.index')) tabs-tab_active @endif">Запросы доступа</a>
         </li>
     </ul>
-{{--    <form method="post">--}}
-        <a href="{{ route('logout') }}" class="header__button-login">Выйти</a>
-{{--    </form>--}}
+    <a href="{{ route('logout') }}" class="header__button-login">Выйти</a>
 </div>

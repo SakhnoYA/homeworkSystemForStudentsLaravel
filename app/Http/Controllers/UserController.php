@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.create_user',['courses' => Course::all()]);
+        return view('admin.create_user', ['courses' => Course::all()]);
     }
 
     public function register()
@@ -45,18 +45,7 @@ class UserController extends Controller
      */
     public function store(RegistrationRequest $request)
     {
-//        $user = User::create([
-//            'id' => $request->get('id'),
-//            'first_name' => $request->get('first_name'),
-//            'last_name' => $request->get('last_name'),
-//            'middle_name' => $request->get('middle_name'),
-//            'password' => $request->get('password'),
-//            'user_type_id' => $request->get('user_type_id'),
-//            'ip' => $request->ip(),
-//            'is_confirmed' => $request->get('is_confirmed') ?? false,
-//        ]);
-
-        $user = User::create($request->except('_token'));
+        $user = User::create($request->except('_token') + ['ip' => $request->ip()]);
 
         if ($request->has('attachCourses')) {
             foreach ($request->input('attachCourses') as $course) {
@@ -64,7 +53,7 @@ class UserController extends Controller
             }
         }
 
-        if(!$request->get('is_confirmed')){
+        if (!$request->get('is_confirmed')) {
             session()->flash('success', 'Заявка на регистрацию отправлена');
             return redirect()->route('login');
         }

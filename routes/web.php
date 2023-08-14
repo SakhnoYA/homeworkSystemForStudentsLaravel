@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseUserController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -28,9 +29,9 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/create_course', function () {
 //    return view('admin.create_course');
 //})->name('admin.create_course');
-Route::get('/access_requests', function () {
-    return view('admin.access_requests');
-})->name('admin.access_requests');
+//Route::get('/access_requests', function () {
+//    return view('admin.access_requests');
+//})->name('admin.access_requests');
 //Route::get('/create_user', function () {
 //    return view('admin.create_user');
 //})->name('admin.create_user');
@@ -57,7 +58,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'type:admin'], function () {
     Route::put('registrations/{id}', [RegistrationController::class, 'update'])->name('registrations.update');
 
     Route::resource('course', CourseController::class)->only([
-        'create', 'store'
+        'create',
+        'store',
+    ]);
+    //тут наверное лучше не котроллер
+    Route::resource('course_user', CourseUserController::class)->only([
+        'update',
+        'destroy',
+        'index'
+    ])->parameters([
+        'course_user' => 'user_id'
     ]);
 //    Route::resource('/users', UserController::class);
 //    Route::resource('/tags', 'TagController');
