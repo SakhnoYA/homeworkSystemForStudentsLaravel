@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\AttachCoursesAction;
+use App\Actions\DetachCoursesAction;
 use App\Http\Requests\EditUserRequest;
 use App\Http\Requests\RegistrationRequest;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
-
-use function dd;
-use function redirect;
-use function session;
 
 
 class UserController extends Controller
@@ -43,15 +41,11 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RegistrationRequest $request)
+    public function store(RegistrationRequest $request, AttachCoursesAction $attachCoursesAction)
     {
         $user = User::create($request->except('_token') + ['ip' => $request->ip()]);
 
-        if ($request->has('attachCourses')) {
-            foreach ($request->input('attachCourses') as $course) {
-                $user->courses()->attach($course, ['is_confirmed' => true]);
-            }
-        }
+        $attachCoursesAction($request, $user, true);
 
         if (!$request->get('is_confirmed')) {
             session()->flash('success', 'Заявка на регистрацию отправлена');
@@ -60,14 +54,6 @@ class UserController extends Controller
         session()->flash('success', 'Пользователь создан');
         return redirect()->route('admin.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
-//    public function show(string $id)
-//    {
-//        return view('basic.registration');
-//    }
 
     /**
      * Show the form for editing the specified resource.
@@ -85,22 +71,18 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(EditUserRequest $request, string $id)
-    {
+    public function update(
+        EditUserRequest $request,
+        AttachCoursesAction $attachCoursesAction,
+        DetachCoursesAction $detachCoursesAction,
+        string $id
+    ) {
         $user = User::find($id);
         $user->update($request->input());
 
-        if ($request->has('attachCourses')) {
-            foreach ($request->input('attachCourses') as $course) {
-                $user->courses()->attach($course, ['is_confirmed' => true]);
-            }
-        }
+        $attachCoursesAction($request, $user, true);
+        $detachCoursesAction($request, $user);
 
-        if ($request->has('detachCourses')) {
-            foreach ($request->input('detachCourses') as $course) {
-                $user->courses()->detach($course);
-            }
-        }
         return redirect()->route('admin.index')->with('success', 'Изменения сохранены');
     }
 

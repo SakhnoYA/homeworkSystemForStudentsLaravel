@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccessRequestController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseUserController;
@@ -35,9 +36,9 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/create_user', function () {
 //    return view('admin.create_user');
 //})->name('admin.create_user');
-Route::get('/edit_user', function () {
-    return view('admin.edit_user');
-})->name('admin.edit_user');
+//Route::get('/edit_user', function () {
+//    return view('admin.edit_user');
+//})->name('admin.edit_user');
 ////    Route::get('/', 'MainController@index')->name('admin.index');
 ////    Route::resource('/categories', 'CategoryController');
 ////    Route::resource('/tags', 'TagController');
@@ -82,6 +83,8 @@ Route::get('/policy', function () {
 Route::post('registration', [UserController::class, 'store'])->middleware('type:guest,admin')->name(
     'registration.store'
 );
+
+Route::resource('access_request', AccessRequestController::class)->only(['index','update'])->middleware('type:student,teacher');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('registration', [UserController::class, 'register'])->name('registration');

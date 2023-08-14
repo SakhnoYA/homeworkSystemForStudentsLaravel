@@ -8,8 +8,9 @@ use App\Models\User;
 
 use Illuminate\Http\Request;
 
-use function redirect;
-use function view;
+use function dd;
+use function dump;
+
 
 class CourseUserController extends Controller
 {
@@ -21,7 +22,12 @@ class CourseUserController extends Controller
         return view('admin.access_requests', [
             'courseRelationships' => Course::whereHas('users', function ($query) {
                 $query->where('course_user.is_confirmed', false);
-            })->with(['users', 'users.user_type'])->paginate(15)
+            })->with([
+                'users' => function ($query) {
+                    $query->wherePivot('is_confirmed', false);
+                },
+                'users.user_type'
+            ])->paginate(15)
         ]);
     }
 
