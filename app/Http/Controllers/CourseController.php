@@ -7,9 +7,6 @@ use App\Models\Course;
 use Auth;
 use Illuminate\Http\Request;
 
-use function redirect;
-use function session;
-
 class CourseController extends Controller
 {
     /**
@@ -60,10 +57,8 @@ class CourseController extends Controller
      */
     public function update(CourseRequest $request, string $id)
     {
-        $course = Course::find($id);
-        $course->update(
-            $request->except('_token')
-        );
+        Course::find($id)->update($request->except('_token'));
+
         session()->flash('success', 'Курс обновлен');
         return redirect()->back();
     }

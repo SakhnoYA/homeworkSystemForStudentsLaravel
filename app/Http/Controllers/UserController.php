@@ -91,11 +91,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::find($id);
-//        if ($tag->posts->count()) {
-//            return redirect()->route('tags.index')->with('error', 'Ошибка! У тегов есть записи');
-//        }
-        $user->delete();
+        User::destroy($id);
         return redirect()->route('admin.index')->with('success', 'Пользователь удален');
     }
 }

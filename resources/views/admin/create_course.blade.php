@@ -74,9 +74,9 @@
                     </select>
                 </label>
                 <textarea name="description" class="login__form-input h200 @error('description') error @enderror"
-                          maxlength="50" placeholder="Описание">{{ old('description') }}</textarea>
+                          maxlength="150" placeholder="Описание">{{ old('description') }}</textarea>
                 <input type="hidden" name="updated_by" value="{{ $id }}">
-                <button type="submit" class="enter__link">Создать</button>
+                <button  class="enter__link">Создать</button>
             </form>
         </div>
 

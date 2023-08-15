@@ -64,7 +64,7 @@
                     Я согласен(а) с <a class="policy" href="{{ route('policy') }}">политикой конфиденциальности</a>
                 </label>
                 <input type="hidden" name="is_confirmed" value="true">
-                <button type="submit" class="register__modal-link">Создать</button>
+                <button  class="register__modal-link">Создать</button>
             </form>
         </div>
 

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Filters\UserFilter;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-use function dd;
-use function redirect;
-use function view;
 
 class RegistrationController extends Controller
 {
@@ -29,8 +25,7 @@ class RegistrationController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user = User::find($id);
-        $user->update($request->input());
+        User::find($id)->update($request->input());
 
         return redirect()->back()->with('success', 'Регистрация подтверждена');
     }
@@ -40,8 +35,7 @@ class RegistrationController extends Controller
      */
     public function destroy(string $id)
     {
-        $user = User::find($id);
-        $user->delete();
+        User::destroy($id);
         return redirect()->back()->with('success', 'Регистрация удалена');
     }
 

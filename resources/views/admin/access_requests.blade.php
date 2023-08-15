@@ -45,7 +45,7 @@
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="course_id" value="{{ $courseRelationship['id'] }}">
-                                        <button type="submit" class="table-button">Подтвердить</button>
+                                        <button  class="table-button">Подтвердить</button>
                                     </form>
                                 </td>
                                 <td class="{{ $rowClass }}">
@@ -53,7 +53,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <input type="hidden" name="course_id" value="{{ $courseRelationship['id'] }}">
-                                        <button type="submit" class="table-button">Отклонить</button>
+                                        <button  class="table-button">Отклонить</button>
                                     </form>
                                 </td>
                             </tr>

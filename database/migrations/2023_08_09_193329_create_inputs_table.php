@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->boolean('is_correct')->nullable();
             $table->foreignIdFor(Attempt::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(Task::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->softDeletes();
         });
     }
 

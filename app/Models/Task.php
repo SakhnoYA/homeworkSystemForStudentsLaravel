@@ -10,7 +10,17 @@ class Task extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'type',
+        'title',
+        'description',
+        'options',
+        'answer',
+        'score',
+        'created_by',
+        'updated_by',
+        'homework_id'
+    ];
 
     public function homework(): BelongsTo
     {

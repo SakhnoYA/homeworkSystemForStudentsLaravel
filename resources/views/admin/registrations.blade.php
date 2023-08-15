@@ -11,7 +11,7 @@
         <form action="{{ route('registrations.destroyAll') }}" method="post">
             @csrf
             @method('DELETE')
-            <button type="submit" class=" header__button-login  fs17">
+            <button  class=" header__button-login  fs17">
                 Удалить всех
                 неподтвержденных пользователей
             </button>
@@ -62,14 +62,14 @@
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="is_confirmed" value="true">
-                                    <button type="submit" class="table-button">Подтвердить</button>
+                                    <button  class="table-button">Подтвердить</button>
                                 </form>
                             </td>
                             <td class="{{ $rowClass }}">
                                 <form action="{{ route('registrations.destroy', $user['id']) }}" method="post">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="table-button">Удалить</button>
+                                    <button  class="table-button">Удалить</button>
                                 </form>
                             </td>
                         </tr>

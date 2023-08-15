@@ -65,12 +65,12 @@
                         @endforeach
                     </ul>
                 </div>
-                <button type="submit" class="enter__link mt1rem">Сохранить</button>
+                <button  class="enter__link mt1rem">Сохранить</button>
             </form>
             <form action="{{ route('users.destroy', $user['id']) }}" method="post">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="enter__link bg-red mt1rem">Удалить</button>
+                <button  class="enter__link bg-red mt1rem">Удалить</button>
             </form>
         </div>
     </div>

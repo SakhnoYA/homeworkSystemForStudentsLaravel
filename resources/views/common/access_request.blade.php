@@ -36,7 +36,7 @@
                         @endforeach
                     </ul>
                 </div>
-                <button type="submit" class="register__modal-link">Отправить</button>
+                <button  class="register__modal-link">Отправить</button>
             </form>
         </div>
     </div>

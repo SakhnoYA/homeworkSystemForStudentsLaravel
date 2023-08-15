@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\User;
-
-
 use Illuminate\Http\Request;
 
-use function dd;
-use function dump;
 
 
 class CourseUserController extends Controller
@@ -33,15 +29,15 @@ class CourseUserController extends Controller
 
     public function update(Request $request, int $user_id)
     {
-        $user = User::find($user_id);
-        $user->courses()->updateExistingPivot($request->input('course_id'), ['is_confirmed' => true]);
+        User::find($user_id)->courses()->updateExistingPivot($request->input('course_id'), ['is_confirmed' => true]);
+
         return redirect()->route('course_user.index')->with('success', 'Запрос одобрен');
     }
 
     public function destroy(Request $request, int $user_id)
     {
-        $user = User::find($user_id);
-        $user->courses()->detach($request->input('course_id'));
+        User::find($user_id)->courses()->detach($request->input('course_id'));
+
         return redirect()->route('course_user.index')->with('success', 'Запрос отклонен');
     }
 }

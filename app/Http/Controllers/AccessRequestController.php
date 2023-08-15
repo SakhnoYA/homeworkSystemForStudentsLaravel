@@ -36,7 +36,7 @@ class AccessRequestController extends Controller
         $attachCoursesAction($request, $user);
         $detachCoursesAction($request, $user);
 
-        return redirect()->route(Auth::user()->user_type->name . '.index')->with('success', 'Запрос отправлен');
+        return redirect()->route(Auth::user()->user_type->path . '.index')->with('success', 'Запрос отправлен');
     }
 
 

@@ -85,18 +85,15 @@
                     Описание
                     <textarea name="description"
                               class="login__form-input h200 mt7px @error('description') error @enderror"
-                              maxlength="50">{{ old('description') ??  $course['description'] }}</textarea>
+                              maxlength="150">{{ old('description') ??  $course['description'] }}</textarea>
                 </label>
                 <input type="hidden" name="updated_by" value="{{ $id }}">
-                <button type="submit" class="enter__link mt1rem">Сохранить</button>
+                <button  class="enter__link mt1rem">Сохранить</button>
             </form>
         </div>
         <div class="register__modal mt1rem mb6rem">
-            <form method="post" class="mb0">
-                @csrf
-                <button type="submit" name="toCreateHomework" class="register__modal-link">Создать домашнее задание
-                </button>
-            </form>
+            <a href="{{route('homework.index',['course_id'=> $course['id']])}}"
+               class="register__modal-link">Создать домашнее задание</a>
         </div>
         <div class="login__modal  mb6rem width-auto dark-slay-gray padding-20-20 ">
             @if ($course->homeworks->count()==0)
@@ -123,7 +120,14 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @php
+                        $isOdd = true;
+                    @endphp
                     @foreach ($course->homeworks as $homework)
+                        @php
+                            $rowClass = $isOdd ? 'tg-0lax' : 'tg-hmp3';
+                            $isOdd = !$isOdd;
+                        @endphp
                         <tr>
                             <td class="{{ $rowClass }}">{{ $homework['id'] }}</td>
                             <td class="{{ $rowClass }}">{{ $homework['title'] }}</td>
@@ -134,14 +138,12 @@
                             <td class="{{ $rowClass }}">{{ $homework['start_date'] }}</td>
                             <td class="{{ $rowClass }}">{{ $homework['end_date'] }}</td>
                             <td class="{{ $rowClass }}">{{ date('Y-m-d H:i', strtotime($homework['created_at'])) }}</td>
+                            <td class="{{ $rowClass }}">{{ date('Y-m-d H:i', strtotime($homework['updated_at'])) }}</td>
                             <td class="{{ $rowClass }}">{{ $homework['created_by'] }}</td>
                             <td class="{{ $rowClass }}">{{ $homework['updated_by'] }}</td>
                             <td class="{{ $rowClass }}">
-                                <form method="post">
-                                    @csrf
-                                    <input type="hidden" name="homework_id" value="{{ $homework['id'] }}">
-                                    <button class="table-button">Редактировать</button>
-                                </form>
+                                <a href="{{ route('homework.index', ['homework_id'=>$homework['id'], 'course_id'=>$course['id']]) }}"
+                                   class="table-button">Редактировать</a>
                             </td>
                             <td class="{{ $rowClass }}">
                                 <form method="post">
@@ -151,9 +153,9 @@
                                 </form>
                             </td>
                             <td class="{{ $rowClass }}">
-                                <form method="post">
+                                <form method="post" action="{{route('homework.destroy',$homework['id'])}}">
                                     @csrf
-                                    <input type="hidden" name="homework_id" value="{{ $homework['id'] }}">
+                                    @method('DELETE')
                                     <button class="table-button">Удалить</button>
                                 </form>
                             </td>

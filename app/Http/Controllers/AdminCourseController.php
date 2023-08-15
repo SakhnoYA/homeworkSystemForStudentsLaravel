@@ -19,9 +19,8 @@ class AdminCourseController extends Controller
 
     public function store(CourseRequest $request)
     {
-        Course::create(
-            $request->except('_token')
-        );
+        Course::create($request->except('_token'));
+
         session()->flash('success', 'Курс создан');
         return redirect()->route('admin.index');
     }

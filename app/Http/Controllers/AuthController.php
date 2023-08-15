@@ -7,8 +7,6 @@ use App\Services\RememberMeService;
 use Auth;
 use Illuminate\Http\Request;
 
-use function dd;
-
 class AuthController extends Controller
 {
     public function loginForm()

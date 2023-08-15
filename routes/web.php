@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseUserController;
+use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -85,10 +87,18 @@ Route::post('registration', [UserController::class, 'store'])->middleware('type:
     'registration.store'
 );
 
-Route::resource('access_request', AccessRequestController::class)->only(['index','update'])->middleware('type:student,teacher');
+Route::resource('access_request', AccessRequestController::class)->only(['index', 'update'])->middleware(
+    'type:student,teacher'
+);
 
 
-Route::resource('course', CourseController::class)->only(['index','update','show'])->middleware('type:student,teacher');
+Route::resource('course', CourseController::class)->only(['index', 'update', 'show'])->middleware(
+    'type:student,teacher'
+);
+
+Route::resource('homework', HomeworkController::class)->middleware('type:teacher');
+
+Route::resource('task', TaskController::class)->middleware('type:teacher');
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('registration', [UserController::class, 'register'])->name('registration');

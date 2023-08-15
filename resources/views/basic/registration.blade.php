@@ -43,7 +43,7 @@
                     <input type="checkbox" name="policy" checked="checked">
                     Я согласен(а) с <a class="policy" href="{{ route('policy') }}">политикой конфиденциальности</a>
                 </label>
-                <button type="submit" class="register__modal-link">Зарегистрироваться</button>
+                <button  class="register__modal-link">Зарегистрироваться</button>
             </form>
         </div>
         <div class="register__modal mt1rem mb6rem">

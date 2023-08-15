@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->text('description');
             $table->string('options', 150);
             $table->string('answer', 150);
-            $table->smallInteger('max_score')->nullable();
+            $table->smallInteger('score')->nullable();
             $table->timestamps();
             $table->foreignId('updated_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('created_by')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();

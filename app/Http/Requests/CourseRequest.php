@@ -34,7 +34,6 @@ class CourseRequest extends FormRequest
     {
         return [
             'title.required' => 'Название обязательно',
-            'title.unique' => 'Данный курс присутствует в системе',
             'title.alpha' => 'Название должно содержать только буквы',
             'title.min' => 'Название должно содержать минимум 5 букв',
             'title.max' => 'Название должно содержать максимум 30 букв',

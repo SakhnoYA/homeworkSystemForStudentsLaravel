@@ -33,7 +33,7 @@
                         <input type="checkbox" name="remember" checked="checked" value="1">
                         Запомнить меня
                     </label>
-                    <button type="submit" name="toEnter" class="enter__link">Войти</button>
+                    <button  name="toEnter" class="enter__link">Войти</button>
                 </form>
 
             </div>

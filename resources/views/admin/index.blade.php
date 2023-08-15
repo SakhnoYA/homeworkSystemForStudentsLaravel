@@ -45,7 +45,7 @@
                     <th class="tg-amwm">Тип пользователя</th>
                     <th class="tg-amwm">Ip</th>
                     <th class="tg-amwm">Подтверждение</th>
-                    <th class="tg-amwm">Профиль</th>
+                    <th class="tg-amwm"></th>
                 </tr>
                 </thead>
                 <tbody>
