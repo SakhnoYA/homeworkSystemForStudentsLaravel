@@ -13,9 +13,9 @@ class UserTypeSeeder extends Seeder
     public function run(): void
     {
         $userTypes = [
-            ['name' => 'admin', 'readable_name' => 'Администратор'],
-            ['name' => 'student', 'readable_name' => 'Студент'],
-            ['name' => 'teacher', 'readable_name' => 'Преподаватель']
+            ['name' => 'admin', 'readable_name' => 'Администратор', 'path' => 'admin'],
+            ['name' => 'student', 'readable_name' => 'Студент', 'path' => 'course'],
+            ['name' => 'teacher', 'readable_name' => 'Преподаватель', 'path' => 'course']
         ];
 
         collect($userTypes)->each(fn($userTypes) => UserType::create($userTypes));

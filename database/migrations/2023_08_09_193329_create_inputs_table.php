@@ -6,22 +6,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('attempt_input', function (Blueprint $table) {
+        Schema::create('inputs', function (Blueprint $table) {
+            $table->id();
+            $table->string('body', 150)->nullable();
+            $table->boolean('is_correct')->nullable();
             $table->foreignIdFor(Attempt::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(Task::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->jsonb('user_input')->nullable();
-            $table->boolean('is_correct')->nullable();
-
-            //TODO: подумать насчет оптимальной реализации в бд
-
-            $table->primary(['attempt_id', 'task_id']);
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('attempt_input');
+        Schema::dropIfExists('inputs');
     }
 };

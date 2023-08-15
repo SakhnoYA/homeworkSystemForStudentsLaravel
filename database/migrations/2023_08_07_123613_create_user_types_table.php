@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 20)->unique();
             $table->string('readable_name', 30);
+            $table->string('path', 30);
         });
     }
 
