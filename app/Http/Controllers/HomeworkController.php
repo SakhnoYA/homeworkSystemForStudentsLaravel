@@ -15,7 +15,7 @@ class HomeworkController extends Controller
     public function index(Request $request)
     {
         return view(
-            'teacher.homework',
+            Auth::user()->user_type->name . '.homework',
             [
                 'homework' => Homework::find($request->get('homework_id')),
                 'id' => Auth::id(),

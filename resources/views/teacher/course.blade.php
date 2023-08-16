@@ -88,7 +88,7 @@
                               maxlength="150">{{ old('description') ??  $course['description'] }}</textarea>
                 </label>
                 <input type="hidden" name="updated_by" value="{{ $id }}">
-                <button  class="enter__link mt1rem">Сохранить</button>
+                <button class="enter__link mt1rem">Сохранить</button>
             </form>
         </div>
         <div class="register__modal mt1rem mb6rem">
@@ -146,11 +146,8 @@
                                    class="table-button">Редактировать</a>
                             </td>
                             <td class="{{ $rowClass }}">
-                                <form method="post">
-                                    @csrf
-                                    <input type="hidden" name="homework_id" value="{{ $homework['id'] }}">
-                                    <button class="table-button">Результаты</button>
-                                </form>
+                                <a href="{{route('attempt.index',['homework_id'=> $homework['id']])}}"
+                                   class="table-button">Результаты</a>
                             </td>
                             <td class="{{ $rowClass }}">
                                 <form method="post" action="{{route('homework.destroy',$homework['id'])}}">

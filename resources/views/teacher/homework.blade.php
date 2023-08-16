@@ -198,17 +198,17 @@
 
                         <label class="label-input">
                             Правильный ответ
-                            <textarea name="answer" class="login__form-input mt7px @error('answer','task_form_'. $task['id']) error @enderror" maxlength="50"
+                            <textarea name="answer" class="login__form-input mt7px @error('answer','task_form_'. $task['id']) error @enderror" maxlength="150"
                             >{{ session('old_task_form_' . $task['id'])['answer']  ?? $task['answer'] }}</textarea>
                         </label>
                         <label class="label-input">
                             Варианты ответа
-                            <textarea name="options" class="login__form-input mt7px @error('options','task_form_'. $task['id']) error @enderror" maxlength="50"
+                            <textarea name="options" class="login__form-input mt7px @error('options','task_form_'. $task['id']) error @enderror" maxlength="150"
                             >{{ session('old_task_form_' . $task['id'])['options'] ?? $task['options'] }}</textarea>
                         </label>
                         <label class="label-input">
                             Описание
-                            <textarea name="description" class="login__form-input h50 mt7px @error('description','task_form_'. $task['id']) error @enderror" maxlength="50"
+                            <textarea name="description" class="login__form-input h50 mt7px @error('description','task_form_'. $task['id']) error @enderror" maxlength="150"
                             >{{ session('old_task_form_' . $task['id'])['description'] ?? $task['description'] }}</textarea>
                         </label>
                         <label>

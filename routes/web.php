@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AccessRequestController;
+use App\Http\Controllers\AttemptController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\CourseController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use App\Models\Attempt;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,7 +98,11 @@ Route::resource('course', CourseController::class)->only(['index', 'update', 'sh
     'type:student,teacher'
 );
 
-Route::resource('homework', HomeworkController::class)->middleware('type:teacher');
+Route::resource('homework', HomeworkController::class)->middleware('type:student,teacher');
+//убрать не нужное
+
+//опасно
+Route::resource('attempt', AttemptController::class)->middleware('type:student,teacher');
 
 Route::resource('task', TaskController::class)->middleware('type:teacher');
 

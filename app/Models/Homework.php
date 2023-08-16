@@ -23,4 +23,9 @@ class Homework extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function attempts(): HasMany
+    {
+        return $this->hasMany(Attempt::class);
+    }
 }

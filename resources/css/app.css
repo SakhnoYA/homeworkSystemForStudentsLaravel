@@ -629,3 +629,8 @@ a {
 .padding-0-200{
     padding: 0 200px;
 }
+
+.width-initial{
+    width: initial;
+}
+

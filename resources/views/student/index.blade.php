@@ -46,9 +46,11 @@
                             <td class="{{ $rowClass }}">{{ $course['difficulty_level'] }}</td>
                             <td class="{{ $rowClass }}">{{ $course['category'] }}</td>
                             <td class="{{ $rowClass }}">
-                                <a href="course.php?id={{ $course['id'] }}">
-                                    <button class="table-button">Решать</button>
-                                </a>
+                                @if( isset($course['end_date']) && $course['end_date'] < now())
+                                    <div class="table-button">Курс завершен</div>
+                                @else
+                                    <a href=" {{route('course.show',$course['id'])}}" class="table-button">Перейти</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

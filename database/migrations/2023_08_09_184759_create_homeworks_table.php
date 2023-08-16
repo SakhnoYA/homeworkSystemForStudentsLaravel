@@ -16,7 +16,7 @@ return new  class extends Migration
             $table->id();
             $table->string('title', 255);
             $table->text('description')->nullable();
-            $table->smallInteger('max_attempts')->nullable();
+            $table->smallInteger('max_attempts')->nullable()->default(1);
             $table->smallInteger('total_marks')->nullable();
             $table->smallInteger('passing_marks')->nullable();
             $table->date('start_date')->nullable();

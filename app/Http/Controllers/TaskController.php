@@ -78,8 +78,8 @@ class TaskController extends Controller
         session()->forget('empty_old_for_create_task_form');
 
         $data = $request->except('_token');
-        $data['options'] = preg_replace('!\s+!', ' ', $data['options']);
-        $data['answer'] = preg_replace('!\s+!', ' ', $data['answer']);
+//        $data['options'] = preg_replace('!\s+!', ' ', $data['options']);
+//        $data['answer'] = preg_replace('!\s+!', ' ', $data['answer']);
 
         Task::find($id)->update($data);
 

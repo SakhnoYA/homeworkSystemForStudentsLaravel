@@ -32,4 +32,9 @@ class Course extends Model
     {
         return $this->hasMany(Homework::class);
     }
+
+    public function attempts(): HasMany
+    {
+        return $this->hasMany(Attempt::class);
+    }
 }

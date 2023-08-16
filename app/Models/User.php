@@ -29,6 +29,11 @@ class User extends Authenticatable
 
     public $incrementing = false;
 
+    public function getFullNameAttribute(): string
+    {
+        return $this->last_name . ' ' . $this->first_name .  ' ' . $this->middle_name;
+    }
+
     public function user_type(): belongsTo
     {
         return $this->belongsTo(UserType::class);

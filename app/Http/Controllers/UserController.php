@@ -21,7 +21,7 @@ class UserController extends Controller
         return view('admin.index', [
             'users' => User::when($request->has('type'), function ($query) use ($request) {
                 $query->where('user_type_id', $request->input('type'));
-            })->with('user_type')->paginate(15)
+            })->where('user_type_id','!=',1)->with('user_type')->paginate(15)
         ]);
     }
 
