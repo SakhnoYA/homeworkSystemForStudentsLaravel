@@ -4,6 +4,13 @@
 
 @section('script')
     @vite('resources/js/checklist.js')
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.input-file input[type=file]').addEventListener('change', function () {
+                this.nextElementSibling.innerHTML = this.files[0].name
+            })
+        })
+    </script>
 @endsection
 
 @section('header__content')
@@ -23,7 +30,8 @@
                     </ul>
                 </div>
             @endif
-            <form class="login__form" method="post" action="{{ route('registration.store') }}">
+            <form class="login__form" method="post" action="{{ route('registration.store') }}"
+                  enctype="multipart/form-data">
                 @csrf
                 <input type="number" name="id" class="login__form-input @error('id') error @enderror" placeholder="ID"
                        value="{{ old('id') }}">
@@ -38,6 +46,10 @@
                 <input type="password" name="password_confirmation"
                        class="login__form-input @error('password_confirmation') error @enderror"
                        placeholder="Повторите пароль">
+                <label class="input-file">
+                    <input type="file" name="image">
+                    <span>Загрузите фотографию профиля</span>
+                </label>
                 <div class="dropdown-check-list mb1rem" tabindex="100">
                     <span class="anchor">Прикрепить к курсу</span>
                     <ul class="items">
@@ -64,7 +76,7 @@
                     Я согласен(а) с <a class="policy" href="{{ route('policy') }}">политикой конфиденциальности</a>
                 </label>
                 <input type="hidden" name="is_confirmed" value="true">
-                <button  class="register__modal-link">Создать</button>
+                <button class="register__modal-link">Создать</button>
             </form>
         </div>
 

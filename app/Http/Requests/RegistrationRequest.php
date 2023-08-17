@@ -30,7 +30,8 @@ class RegistrationRequest extends FormRequest
             'middle_name' => ['bail', 'alpha', 'min:2', 'max:30', 'nullable', new Cyrillic],
             'password' => ['bail', 'required', 'min:4', 'max:30', 'confirmed'],
             'policy' => ['accepted'],
-            'user_type_id'=> ['required']
+            'user_type_id'=> ['required'],
+            'image' => ['nullable','image','mimes:jpeg,png,jpg,gif,svg','max:2048']
         ];
     }
 
@@ -63,7 +64,10 @@ class RegistrationRequest extends FormRequest
             'password.min' => 'Пароль должен содержать минимум 4 символа',
             'password.max' => 'Пароль должно содержать максимум 30 символов',
             'password.confirmed' => 'Пароли не совпали',
-            'user_type_id.required'=> 'Роль обязательна'
+            'user_type_id.required'=> 'Роль обязательна',
+            'image.image'=>'Фото профиля должно быть картинкой',
+            'image.mimes'=>'Фото профиля должно быть в расширении jpeg, png, jpg, gif, svg',
+            'image.max'=>'Фото профиля должно быть не больше 2 Мб'
         ];
     }
 }

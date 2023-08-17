@@ -24,6 +24,7 @@ class User extends Authenticatable
         'last_name',
         'middle_name',
         'password',
+        'image',
         'user_type_id',
         'ip',
         'is_confirmed'

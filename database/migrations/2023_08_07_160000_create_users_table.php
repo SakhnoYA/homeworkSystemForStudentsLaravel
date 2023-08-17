@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('last_name', 30);
             $table->string('middle_name', 30)->nullable();
             $table->string('password',255);
+            $table->string('image')->nullable();
             $table->foreignIdFor(UserType::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->ipAddress('ip')->nullable();
             $table->boolean('is_confirmed')->default(false);

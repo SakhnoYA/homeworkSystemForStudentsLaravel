@@ -6,6 +6,9 @@ use App\Http\Requests\LoginRequest;
 use App\Services\RememberMeService;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+use function dd;
 
 class AuthController extends Controller
 {
@@ -37,6 +40,10 @@ class AuthController extends Controller
 //            }
             if ($request->get('remember')) {
                 $rememberMeService->setRememberMeExpiration(Auth::user());
+            }
+
+            if (isset(Auth::user()->image)) {
+                Storage::disk('local')->put('app/public/avatar', Storage::disk('sftp')->get(Auth::user()->image));
             }
 
             return redirect()->route(Auth::user()->user_type->path . '.index');

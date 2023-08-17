@@ -10,6 +10,9 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+
+use function dd;
 
 
 class UserController extends Controller
@@ -19,7 +22,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-
         $page = $request->input('page', 1);
 
         $cacheKey = "cached_users_{$request->input('type')}_page_$page";
@@ -59,7 +61,21 @@ class UserController extends Controller
      */
     public function store(RegistrationRequest $request, AttachCoursesAction $attachCoursesAction)
     {
-        $user = User::create($request->except('_token') + ['ip' => $request->ip()]);
+        $filename_to_store = '';
+
+        if ($request->hasFile('image')) {
+            $filename_with_extension = $request->file('image')->getClientOriginalName();
+
+            $filename = pathinfo($filename_with_extension, PATHINFO_FILENAME);
+
+            $extension = $request->file('image')->getClientOriginalExtension();
+
+            $filename_to_store = 'avatars/' . $filename . '_' . uniqid() . '.' . $extension;
+
+            Storage::put($filename_to_store, fopen($request->file('image'), 'r+'));
+        }
+
+        $user = User::create($request->except('image') + ['ip' => $request->ip(), 'image' => $filename_to_store]);
 
         $attachCoursesAction($request, $user, true);
 
