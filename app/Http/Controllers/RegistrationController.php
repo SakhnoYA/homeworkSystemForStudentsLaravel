@@ -16,7 +16,7 @@ class RegistrationController extends Controller
         return view('admin.registrations', [
             'users' => User::where(
                 ['is_confirmed' => false]
-            )->with('user_type')->paginate(15)
+            )->with('user_type')->paginate(config('constants.options.paginate_number'))
         ]);
     }
 

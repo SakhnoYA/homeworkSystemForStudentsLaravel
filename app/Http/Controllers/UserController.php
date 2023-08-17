@@ -9,6 +9,7 @@ use App\Http\Requests\RegistrationRequest;
 use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 
 class UserController extends Controller
@@ -18,11 +19,26 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        return view('admin.index', [
-            'users' => User::when($request->has('type'), function ($query) use ($request) {
+
+        $page = $request->input('page', 1);
+
+        $cacheKey = "cached_users_{$request->input('type')}_page_$page";
+
+        if (Cache::has($cacheKey)) {
+            $users = Cache::get($cacheKey);
+        } else {
+            $users = User::when($request->has('type'), function ($query) use ($request) {
                 $query->where('user_type_id', $request->input('type'));
-            })->where('user_type_id','!=',1)->with('user_type')->paginate(15)
-        ]);
+            })
+                ->where('user_type_id', '!=', 1)
+                ->with('user_type')
+                ->orderBy('created_at')
+                ->paginate(config('constants.options.paginate_number'));
+
+            Cache::put($cacheKey, $users);
+        }
+
+        return view('admin.index', ['users' => $users]);
     }
 
     /**

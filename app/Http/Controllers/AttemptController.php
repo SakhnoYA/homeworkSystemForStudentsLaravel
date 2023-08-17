@@ -4,22 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Attempt;
 use App\Models\Task;
-use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 use Str;
 
-use function array_map;
-use function dd;
-use function explode;
-use function implode;
-use function is_array;
-use function redirect;
-use function str_replace;
-use function strtolower;
-use function view;
 
 
 class AttemptController extends Controller
@@ -32,7 +20,7 @@ class AttemptController extends Controller
         return view('teacher.homework_results', [
             'attempts' => Attempt::selectRaw(
                 'ROW_NUMBER() OVER(PARTITION BY homework_id, user_id) AS row_number, *'
-            )->where('homework_id', $request['homework_id'])->with('user')->paginate(15)
+            )->where('homework_id', $request['homework_id'])->with('user')->paginate(config('constants.options.paginate_number'))
         ]);
     }
 

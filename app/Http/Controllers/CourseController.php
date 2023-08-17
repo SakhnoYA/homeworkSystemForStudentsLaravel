@@ -16,7 +16,8 @@ class CourseController extends Controller
     {
         return view(
             Auth::user()->user_type->name . '.index',
-            ['confirmedAttachedCourses' => Auth::user()->courses()->wherePivot('is_confirmed', true)->paginate(15)]
+
+            ['confirmedAttachedCourses' => Auth::user()->courses()->wherePivot('is_confirmed', true)->paginate(config('constants.options.paginate_number'))]
         );
     }
 
