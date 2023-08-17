@@ -80,6 +80,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'type:admin'], function () {
 //    Route::resource('/posts', 'PostController');
 });
 
+Route::get('file',function (){
+    dd(Storage::makeDirectory('shit/lll'));
+});
 
 Route::get('/policy', function () {
     return view('basic.policy');

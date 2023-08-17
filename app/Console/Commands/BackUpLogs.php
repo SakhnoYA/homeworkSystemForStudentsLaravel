@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
+use function dd;
+
 
 class BackUpLogs extends Command
 {
@@ -42,7 +44,9 @@ class BackUpLogs extends Command
                 $contents = $localDisk->get($file);
                 $cloudLocation = $pathPrefix . Str::after($file, '/');
                 $cloudDisk->put($cloudLocation, $contents);
-//                $localDisk->delete($file);
+                $localDisk->delete($file);
+                $localDisk->put('logs/laravel.log','');
+                $localDisk->put('logs/sql.log','');
             }
         } else {
             Log::info('BackUpLogs not backing up in local env');

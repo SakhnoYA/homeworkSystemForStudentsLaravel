@@ -17,4 +17,4 @@ RUN chmod o+w ./storage/ -R && curl -sS https://getcomposer.org/installer | php 
 
 EXPOSE 80
 
-CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;'"]
+CMD ["bash", "-c", "php-fpm & nginx -g 'daemon off;' & (while :; do sleep 60; php artisan schedule:run; done)"]
