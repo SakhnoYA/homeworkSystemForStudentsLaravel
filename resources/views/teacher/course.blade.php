@@ -24,7 +24,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{ route('course.update', $course['id']) }}">
+            <form method="post" action="{{ route('course.update',['id'=> $course['id']]) }}">
                 @csrf
                 @method('PUT')
                 <label>

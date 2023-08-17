@@ -9,13 +9,13 @@
 @section('header__subcontent')
     <div class="header__subcontent">
         <div>
-            <a href="{{ route('admin.index') }}" class="header__button-login bd-none fw300 fs17">Все
+            <a href="{{ route('users.index') }}" class="header__button-login bd-none fw300 fs17">Все
                 пользователи
             </a>
-            <a href="{{ route('admin.index', ['type'=>3]) }}" class="header__button-login bd-none fw300 fs17">
+            <a href="{{ route('users.index', ['type'=>3]) }}" class="header__button-login bd-none fw300 fs17">
                 Преподаватели
             </a>
-            <a href="{{ route('admin.index', ['type'=>2]) }}" class="header__button-login bd-none fw300 fs17">Студенты
+            <a href="{{ route('users.index', ['type'=>2]) }}" class="header__button-login bd-none fw300 fs17">Студенты
             </a>
         </div>
         <div>

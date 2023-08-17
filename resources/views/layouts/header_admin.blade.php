@@ -2,8 +2,8 @@
 
 @section('tabs')
     <li>
-        <a href="{{ route('admin.index') }}"
-           class="tabs-tab @if (Route::is('admin.index')) tabs-tab_active @endif">Пользователи</a>
+        <a href="{{ route('users.index') }}"
+           class="tabs-tab @if (Route::is('users.index')) tabs-tab_active @endif">Пользователи</a>
     </li>
     <li>
         <a href="{{ route('registrations.index') }}"

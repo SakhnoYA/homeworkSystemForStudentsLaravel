@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Str;
 
 
-
 class AttemptController extends Controller
 {
     /**
@@ -20,16 +19,10 @@ class AttemptController extends Controller
         return view('teacher.homework_results', [
             'attempts' => Attempt::selectRaw(
                 'ROW_NUMBER() OVER(PARTITION BY homework_id, user_id) AS row_number, *'
-            )->where('homework_id', $request['homework_id'])->with('user')->paginate(config('constants.options.paginate_number'))
+            )->where('homework_id', $request['homework_id'])->with('user')->paginate(
+                config('constants.options.paginate_number')
+            )
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -37,7 +30,6 @@ class AttemptController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request->all());
         $attempt = Attempt::create(
             [
                 'user_id' => Auth::id(),
@@ -46,24 +38,15 @@ class AttemptController extends Controller
             ]
         );
 
-//        DB::table('attempt_homework_user')->insert(
-//            [
-//                'user_id' => Auth::id(),
-//                'homework_id' => $request->get('homework_id'),
-//                'attempt_id' => $attempt->id
-//            ]
-//        );
 
         $data = $request->except(['_token', 'homework_id', 'course_id']);
+
         for ($i = 0; $i < count($data) / 2; $i++) {
-//            dd($data);
             $input_body = $data['body' . $i];
             if (is_array($input_body)) {
                 $input_body = array_map(fn($word) => Str::lower($word), $input_body);
             } else {
-//                dump($input_body);
                 $input_body = Str::lower($input_body);
-//                dump($input_body);
             }
 
             $task_id = $data['task_id' . $i];
@@ -77,9 +60,6 @@ class AttemptController extends Controller
                 $isCorrect = $input_body == $correctAnswer;
                 $input_body = implode(' ', $input_body);
             } elseif ($task->type === 'single_choice' || $task->type === 'word_match') {
-//                if($task->type === 'word_match'){
-//                    dd($input_body, $correctAnswer);
-//                }
                 $isCorrect = in_array($input_body, $correctAnswer);
             } else {
                 $isCorrect = false;
@@ -105,19 +85,10 @@ class AttemptController extends Controller
      */
     public function show(string $id)
     {
-//        dd(Attempt::with('inputs', 'inputs.tasks')->where('id', $id)->first());
         return view(
             'common.result_homework',
             ['attempt' => Attempt::with('inputs', 'inputs.task')->where('id', $id)->first()]
         );
     }
 
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

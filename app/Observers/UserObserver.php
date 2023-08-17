@@ -29,7 +29,7 @@ class UserObserver
         $cacheKey = "cached_users_{$user->user_type_id}_page_$lastPage";
         Cache::forget($cacheKey);
 
-        $cacheKeyAll = "cached_users_page_$lastPage";
+        $cacheKeyAll = "cached_users__page_$lastPage";
         Cache::forget($cacheKeyAll);
     }
 

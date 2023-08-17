@@ -13,7 +13,7 @@ class UserTypeSeeder extends Seeder
     public function run(): void
     {
         $userTypes = [
-            ['name' => 'admin', 'readable_name' => 'Администратор', 'path' => 'admin'],
+            ['name' => 'admin', 'readable_name' => 'Администратор', 'path' => 'users'],
             ['name' => 'student', 'readable_name' => 'Студент', 'path' => 'course'],
             ['name' => 'teacher', 'readable_name' => 'Преподаватель', 'path' => 'course']
         ];

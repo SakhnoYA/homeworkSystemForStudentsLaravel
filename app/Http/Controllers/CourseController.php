@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
-use Auth;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -16,25 +15,12 @@ class CourseController extends Controller
     {
         return view(
             Auth::user()->user_type->name . '.index',
-
-            ['confirmedAttachedCourses' => Auth::user()->courses()->wherePivot('is_confirmed', true)->paginate(config('constants.options.paginate_number'))]
+            [
+                'confirmedAttachedCourses' => Auth::user()->courses()->wherePivot('is_confirmed', true)->paginate(
+                    config('constants.options.paginate_number')
+                )
+            ]
         );
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**
@@ -43,14 +29,6 @@ class CourseController extends Controller
     public function show(string $id)
     {
         return view(Auth::user()->user_type->name . '.course', ['course' => Course::find($id), 'id' => Auth::id()]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
     }
 
     /**
@@ -64,11 +42,4 @@ class CourseController extends Controller
         return redirect()->back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

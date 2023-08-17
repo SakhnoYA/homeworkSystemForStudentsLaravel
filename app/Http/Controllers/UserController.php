@@ -12,9 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
-use function dd;
-
-
 class UserController extends Controller
 {
     /**
@@ -51,11 +48,6 @@ class UserController extends Controller
         return view('admin.create_user', ['courses' => Course::all()]);
     }
 
-    public function register()
-    {
-        return view('basic.registration');
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -84,7 +76,7 @@ class UserController extends Controller
             return redirect()->route('login');
         }
         session()->flash('success', 'Пользователь создан');
-        return redirect()->route('admin.index');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -115,7 +107,7 @@ class UserController extends Controller
         $attachCoursesAction($request, $user, true);
         $detachCoursesAction($request, $user);
 
-        return redirect()->route('admin.index')->with('success', 'Изменения сохранены');
+        return redirect()->route('users.index')->with('success', 'Изменения сохранены');
     }
 
     /**
@@ -124,6 +116,6 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
-        return redirect()->route('admin.index')->with('success', 'Пользователь удален');
+        return redirect()->route('users.index')->with('success', 'Пользователь удален');
     }
 }
