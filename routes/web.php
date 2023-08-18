@@ -61,7 +61,7 @@ Route::group(['middleware' => 'type:teacher'], function () {
     Route::resource('task', TaskController::class)->only(['store', 'update', 'destroy']);
     Route::post('homework', [HomeworkController::class, 'store'])->name('homework.store');
     Route::put('homework/{id}', [HomeworkController::class, 'update'])->name('homework.update');
-    Route::delete('homework', [HomeworkController::class, 'destroy'])->name('homework.destroy');
+    Route::delete('homework/{id}', [HomeworkController::class, 'destroy'])->name('homework.destroy');
 });
 
 Route::group(['middleware' => 'type:student,teacher'], function () {
