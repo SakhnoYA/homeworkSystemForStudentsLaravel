@@ -12,17 +12,14 @@ class AddContentSecurityPolicyHeaders
     /**
      * Handle an incoming request.
      *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (app()->isLocal()) {
-            return $next($request);
-        }
         Vite::useCspNonce();
 
         return $next($request)->withHeaders([
-            'Content-Security-Policy' => "script-src 'nonce-" . Vite::cspNonce() . "'",
+            'Content-Security-Policy' => "script-src 'nonce-".Vite::cspNonce()."'",
         ]);
     }
 }

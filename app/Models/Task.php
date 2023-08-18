@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Casts\StringSquish;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -15,7 +14,7 @@ class Task extends Model
 
     protected $casts = [
         'options' => StringSquish::class,
-        'answer' => StringSquish::class
+        'answer' => StringSquish::class,
     ];
 
     protected $fillable = [
@@ -27,7 +26,7 @@ class Task extends Model
         'score',
         'created_by',
         'updated_by',
-        'homework_id'
+        'homework_id',
     ];
 
     public function homework(): BelongsTo
@@ -40,17 +39,4 @@ class Task extends Model
         return $this->hasMany(Input::class);
     }
 
-//    protected function options(): Attribute
-//    {
-//        return Attribute::make(
-//            set: fn (string $value) =>  preg_replace('!\s+!', ' ', $value)
-//        );
-//    }
-//
-//    protected function answer(): Attribute
-//    {
-//        return Attribute::make(
-//            set: fn (string $value) => preg_replace('!\s+!', ' ', $value)
-//        );
-//    }
 }

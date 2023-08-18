@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-         $schedule->command('app:back-up-logs')->everySixHours();
+        $schedule->command('app:back-up-logs')->daily();
     }
 
     /**

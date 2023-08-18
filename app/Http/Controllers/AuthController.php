@@ -15,8 +15,10 @@ class AuthController extends Controller
         return view('basic.login');
     }
 
-    public function login(LoginRequest $request, RememberMeService $rememberMeService)
-    {
+    public function login(
+        LoginRequest $request,
+        RememberMeService $rememberMeService
+    ) {
         if (Auth::attempt([
             'id' => $request->get('login'),
             'password' => $request->get('password'),
@@ -29,7 +31,7 @@ class AuthController extends Controller
                 Storage::disk('local')->put('app/public/avatar', Storage::disk('sftp')->get(Auth::user()->image));
             }
 
-            return redirect()->route(Auth::user()->user_type->path . '.index');
+            return redirect()->route(Auth::user()->user_type->path.'.index');
         }
 
         return redirect()->back()->withErrors(['error' => 'Неверные входные данные']);

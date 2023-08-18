@@ -12,7 +12,8 @@ class Homework extends Model
     use SoftDeletes;
 
     protected $table = 'homeworks';
-    protected $fillable = ['title','description','max_attempts','total_marks','passing_marks','start_date','end_date','updated_by','created_by','course_id'];
+
+    protected $fillable = ['title', 'description', 'max_attempts', 'total_marks', 'passing_marks', 'start_date', 'end_date', 'updated_by', 'created_by', 'course_id'];
 
     public function course(): BelongsTo
     {

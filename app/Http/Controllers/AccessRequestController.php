@@ -6,8 +6,8 @@ use App\Actions\AttachCoursesAction;
 use App\Actions\DetachCoursesAction;
 use App\Models\Course;
 use App\Models\User;
-use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AccessRequestController extends Controller
 {
@@ -20,7 +20,7 @@ class AccessRequestController extends Controller
             $query->where('users.id', Auth::id());
         })->get();
 
-        return view('common.access_request', ['unattachedCourses' => $unattachedCourses,'user'=>Auth::user()]);
+        return view('common.access_request', ['unattachedCourses' => $unattachedCourses, 'user' => Auth::user()]);
     }
 
     /**
@@ -36,8 +36,6 @@ class AccessRequestController extends Controller
         $attachCoursesAction($request, $user);
         $detachCoursesAction($request, $user);
 
-        return redirect()->route(Auth::user()->user_type->path . '.index')->with('success', 'Запрос отправлен');
+        return redirect()->route(Auth::user()->user_type->path.'.index')->with('success', 'Запрос отправлен');
     }
-
-
 }

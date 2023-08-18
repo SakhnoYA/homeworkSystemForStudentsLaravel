@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Str;
+/** @noinspection PhpRedundantOptionalArgumentInspection */
 
 return [
 
@@ -42,8 +42,6 @@ return [
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
-
-
 
         'pgsql' => [
             'driver' => 'pgsql',
@@ -117,9 +115,9 @@ return [
         'options' => [
             'parameters' => [
                 'password' => env('REDIS_PASSWORD', null),
-//                'scheme'   => env('REDIS_SCHEME', 'tcp'),
+                //                'scheme'   => env('REDIS_SCHEME', 'tcp'),
             ],
-        ]
-    ]
+        ],
+    ],
 
 ];

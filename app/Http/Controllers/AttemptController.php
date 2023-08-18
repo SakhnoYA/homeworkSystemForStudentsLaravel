@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Attempt;
 use App\Models\Task;
-use Auth;
 use Illuminate\Http\Request;
-use Str;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AttemptController extends Controller
 {
@@ -21,7 +20,7 @@ class AttemptController extends Controller
                 'ROW_NUMBER() OVER(PARTITION BY homework_id, user_id) AS row_number, *'
             )->where('homework_id', $request['homework_id'])->with('user')->paginate(
                 config('constants.options.paginate_number')
-            )
+            ),
         ]);
     }
 
@@ -38,22 +37,21 @@ class AttemptController extends Controller
             ]
         );
 
+        $input = $request->except(['_token', 'homework_id', 'course_id']);
 
-        $data = $request->except(['_token', 'homework_id', 'course_id']);
-
-        for ($i = 0; $i < count($data) / 2; $i++) {
-            $input_body = $data['body' . $i];
+        for ($i = 0; $i < count($input) / 2; $i++) {
+            $input_body = $input['body'.$i];
             if (is_array($input_body)) {
-                $input_body = array_map(fn($word) => Str::lower($word), $input_body);
+                $input_body = array_map(fn ($word) => Str::lower($word), $input_body);
             } else {
                 $input_body = Str::lower($input_body);
             }
 
-            $task_id = $data['task_id' . $i];
+            $task_id = $input['task_id'.$i];
 
             $task = Task::find($task_id);
 
-            $correctAnswer = array_map(fn($word) => strtolower(str_replace('"', '', $word)),
+            $correctAnswer = array_map(fn ($word) => strtolower(str_replace('"', '', $word)),
                 explode(' ', $task->answer));
 
             if ($task->type === 'multiple_choice') {
@@ -69,7 +67,7 @@ class AttemptController extends Controller
                 'body' => $input_body,
                 'is_correct' => $isCorrect,
                 'attempt_id' => $attempt->id,
-                'task_id' => $task_id
+                'task_id' => $task_id,
             ]);
         }
 
@@ -90,5 +88,4 @@ class AttemptController extends Controller
             ['attempt' => Attempt::with('inputs', 'inputs.task')->where('id', $id)->first()]
         );
     }
-
 }

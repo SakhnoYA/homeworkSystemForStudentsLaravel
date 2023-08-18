@@ -12,17 +12,17 @@ class Type
     /**
      * Handle an incoming request.
      *
-     * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $user = Auth::user();
 
-        if (!$user && !in_array('guest', $roles)) {
+        if (! $user && ! in_array('guest', $roles)) {
             return redirect()->route('login');
         }
 
-        if (!$user && in_array('guest', $roles)) {
+        if (! $user && in_array('guest', $roles)) {
             return $next($request);
         }
 
@@ -30,6 +30,6 @@ class Type
             return $next($request);
         }
 
-        return redirect()->route($user->user_type->name . '.index');
+        return redirect()->route($user->user_type->name.'.index');
     }
 }

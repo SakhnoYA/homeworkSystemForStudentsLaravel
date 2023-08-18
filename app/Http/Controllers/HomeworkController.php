@@ -15,15 +15,14 @@ class HomeworkController extends Controller
     public function index(Request $request)
     {
         return view(
-            Auth::user()->user_type->name . '.homework',
+            Auth::user()->user_type->name.'.homework',
             [
                 'homework' => Homework::find($request->get('homework_id')),
                 'id' => Auth::id(),
-                'course_id' => $request->input('course_id')
+                'course_id' => $request->input('course_id'),
             ]
         );
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -40,7 +39,7 @@ class HomeworkController extends Controller
             'end_date' => $request['hw_end_date'],
             'updated_by' => $request['updated_by'],
             'created_by' => $request['created_by'],
-            'course_id' => $request['course_id']
+            'course_id' => $request['course_id'],
         ]);
 
         return redirect()->route(
@@ -51,7 +50,6 @@ class HomeworkController extends Controller
             'Домашнее задание создано'
         );
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -66,7 +64,7 @@ class HomeworkController extends Controller
             'passing_marks' => $request['hw_passing_marks'],
             'start_date' => $request['hw_start_date'],
             'end_date' => $request['hw_end_date'],
-            'updated_by' => $request['updated_by']
+            'updated_by' => $request['updated_by'],
         ]);
 
         return redirect()->route('homework.index', ['homework_id' => $id, 'course_id' => $request['course_id']])->with(
@@ -81,6 +79,7 @@ class HomeworkController extends Controller
     public function destroy(string $id)
     {
         Homework::destroy($id);
+
         return redirect()->back()->with('success', 'Домашнее задание удалено');
     }
 }

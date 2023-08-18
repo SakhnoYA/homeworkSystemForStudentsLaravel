@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
 {
@@ -27,7 +26,7 @@ class User extends Authenticatable
         'image',
         'user_type_id',
         'ip',
-        'is_confirmed'
+        'is_confirmed',
     ];
 
     /**
@@ -43,7 +42,7 @@ class User extends Authenticatable
 
     public function getFullNameAttribute(): string
     {
-        return $this->last_name . ' ' . $this->first_name . ' ' . $this->middle_name;
+        return $this->last_name.' '.$this->first_name.' '.$this->middle_name;
     }
 
     public function user_type(): belongsTo
@@ -55,6 +54,4 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Course::class);
     }
-
-
 }

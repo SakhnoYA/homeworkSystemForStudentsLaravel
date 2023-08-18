@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\AccessRequestController;
+use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\AttemptController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseUserController;
 use App\Http\Controllers\HomeworkController;
@@ -23,12 +23,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::group(['prefix' => 'admin', 'middleware' => 'type:admin'], function () {
     Route::resource('users', UserController::class)->except(['show']);
     Route::delete('registrations', [RegistrationController::class, 'destroyAll'])->name('registrations.destroyAll');
     Route::resource('registrations', RegistrationController::class)->only(['index', 'store', 'update', 'destroy']);
-    Route::resource('course', AdminCourseController::class)->only(['create', 'store',]);
+    Route::resource('course', AdminCourseController::class)->only(['create', 'store']);
     Route::resource('course_user', CourseUserController::class)->only(['index', 'update', 'destroy'])->parameters(
         ['course_user' => 'user_id']
     );
@@ -61,7 +60,7 @@ Route::group(['middleware' => 'type:teacher'], function () {
     Route::get('attempt', [AttemptController::class, 'index'])->name('attempt.index');
     Route::resource('task', TaskController::class)->only(['store', 'update', 'destroy']);
     Route::post('homework', [HomeworkController::class, 'store'])->name('homework.store');
-    Route::put('homework', [HomeworkController::class, 'update'])->name('homework.update');
+    Route::put('homework/{id}', [HomeworkController::class, 'update'])->name('homework.update');
     Route::delete('homework', [HomeworkController::class, 'destroy'])->name('homework.destroy');
 });
 

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseRequest;
 use App\Models\Course;
-use Auth;
-
+use Illuminate\Support\Facades\Auth;
 
 class AdminCourseController extends Controller
 {
@@ -22,6 +21,7 @@ class AdminCourseController extends Controller
         Course::create($request->all());
 
         session()->flash('success', 'Курс создан');
+
         return redirect()->route('users.index');
     }
 }

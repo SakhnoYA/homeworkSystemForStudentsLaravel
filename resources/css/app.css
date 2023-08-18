@@ -68,6 +68,7 @@ main {
 .header-logo {
     height: 70px;
 }
+
 .image-profile {
     margin-left: 20px;
     height: 70px;
@@ -260,13 +261,6 @@ main {
     margin-bottom: 1rem;
 }
 
-.errorMessage {
-    color: #e64646;
-    font-size: 13px;
-    margin-top: 6px;
-    margin-bottom: 0;
-}
-
 .tabs li {
     display: inline-block;
     padding: 0 12px;
@@ -344,16 +338,6 @@ main {
     height: 50px;
 }
 
-
-.header__subcontent-button {
-    text-decoration: none;
-    padding: 8px 20px;
-    font-size: 19px;
-    font-weight: 500;
-    line-height: 1.43;
-    cursor: pointer;
-    color: #000;
-}
 
 .fs17 {
     font-size: 17px;
@@ -469,10 +453,6 @@ textarea {
     margin-bottom: 16px;
 }
 
-.mb0 {
-    margin-bottom: 0;
-}
-
 .w40p {
     width: 40%;
 }
@@ -552,6 +532,7 @@ textarea {
     border: 8px solid green;
 }
 
+/*noinspection CssUnusedSymbol*/
 .wrong {
     border: 8px solid red;
 }
@@ -583,19 +564,6 @@ textarea {
     border: 1px solid rgb(36, 46, 57);
 }
 
-/*.page-link:hover {*/
-/*    z-index: 2;*/
-/*    color: #0056b3;*/
-/*    text-decoration: none;*/
-/*    background-color: #e9ecef;*/
-/*    border-color: #dee2e6*/
-/*}*/
-
-/*.page-link:focus {*/
-/*    z-index: 3;*/
-/*    outline: 0;*/
-/*    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)*/
-/*}*/
 
 .page-item:first-child .page-link {
     margin-left: 0;
@@ -631,11 +599,11 @@ a {
     margin-top: 2rem;
 }
 
-.padding-0-200{
+.padding-0-200 {
     padding: 0 200px;
 }
 
-.width-initial{
+.width-initial {
     width: initial;
 }
 
@@ -643,6 +611,7 @@ a {
     position: relative;
     display: block;
 }
+
 .input-file span {
     position: relative;
     display: inline-block;
@@ -663,6 +632,7 @@ a {
     transition: background-color 0.2s;
     margin-bottom: 15px;
 }
+
 .input-file input[type=file] {
     position: absolute;
     z-index: -1;
@@ -674,7 +644,7 @@ a {
 
 /* Focus */
 .input-file input[type=file]:focus + span {
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
 }
 
 /* Disabled */

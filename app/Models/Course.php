@@ -20,7 +20,7 @@ class Course extends Model
         'difficulty_level',
         'category',
         'availability',
-        'updated_by'
+        'updated_by',
     ];
 
     public function users(): BelongsToMany

@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-
 class TaskRequest extends FormRequest
 {
     protected $errorBag = 'create_task_form';
@@ -29,7 +28,7 @@ class TaskRequest extends FormRequest
             'description' => ['bail', 'required', 'min:5', 'max:300'],
             'score' => ['bail', 'integer', 'max:1000', 'min:1', 'nullable'],
             'options' => ['bail', 'required', 'max:150'],
-            'answer' => ['bail', 'required', 'max:150']
+            'answer' => ['bail', 'required', 'max:150'],
         ];
     }
 
@@ -48,7 +47,7 @@ class TaskRequest extends FormRequest
             'options.required' => 'Варианты ответа обязательны',
             'options.max' => 'Варианты ответа должны содержать 150 символов',
             'answer.required' => 'Правильные варианты ответа обязательны',
-            'answer.max' => 'Правильные варианты должны содержать 150 символов'
+            'answer.max' => 'Правильные варианты должны содержать 150 символов',
         ];
     }
 
@@ -60,11 +59,14 @@ class TaskRequest extends FormRequest
         $pattern = '/("[^"]*"|\S+)/u';
 
         preg_match_all($pattern, $this->options, $matches1);
-        $this['options'] = implode(' ', array_map(fn ($word) => preg_replace('/"\s*(.*?)\s*"/', '"$1"', $word), $matches1[0]));
+        $this['options'] = implode(
+            ' ',
+            array_map(fn ($word) => preg_replace('/"\s*(.*?)\s*"/', '"$1"', $word), $matches1[0])
+        );
         preg_match_all($pattern, $this->answer, $matches2);
-        $this['answer'] = implode(' ', array_map(fn ($word) => preg_replace('/"\s*(.*?)\s*"/', '"$1"', $word), $matches2[0]));
-
-//        $this['options'] = preg_replace('!\s+!', ' ', $this->options);
-//        $this['answer'] = preg_replace('!\s+!', ' ', $this->answer);
+        $this['answer'] = implode(
+            ' ',
+            array_map(fn ($word) => preg_replace('/"\s*(.*?)\s*"/', '"$1"', $word), $matches2[0])
+        );
     }
 }

@@ -14,11 +14,11 @@ class CourseController extends Controller
     public function index()
     {
         return view(
-            Auth::user()->user_type->name . '.index',
+            Auth::user()->user_type->name.'.index',
             [
                 'confirmedAttachedCourses' => Auth::user()->courses()->wherePivot('is_confirmed', true)->paginate(
                     config('constants.options.paginate_number')
-                )
+                ),
             ]
         );
     }
@@ -28,7 +28,7 @@ class CourseController extends Controller
      */
     public function show(string $id)
     {
-        return view(Auth::user()->user_type->name . '.course', ['course' => Course::find($id), 'id' => Auth::id()]);
+        return view(Auth::user()->user_type->name.'.course', ['course' => Course::find($id), 'id' => Auth::id()]);
     }
 
     /**
@@ -39,7 +39,7 @@ class CourseController extends Controller
         Course::find($id)->update($request->except('_token'));
 
         session()->flash('success', 'Курс обновлен');
+
         return redirect()->back();
     }
-
 }

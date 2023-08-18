@@ -6,7 +6,6 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-
 class CourseUserController extends Controller
 {
     /**
@@ -21,8 +20,8 @@ class CourseUserController extends Controller
                 'users' => function ($query) {
                     $query->wherePivot('is_confirmed', false);
                 },
-                'users.user_type'
-            ])->paginate(config('constants.options.paginate_number'))
+                'users.user_type',
+            ])->paginate(config('constants.options.paginate_number')),
         ]);
     }
 

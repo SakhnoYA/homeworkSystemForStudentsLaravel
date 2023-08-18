@@ -7,7 +7,6 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-
 class TaskController extends Controller
 {
     /**
@@ -26,7 +25,6 @@ class TaskController extends Controller
         );
     }
 
-
     /**
      * Update the specified resource in storage.
      */
@@ -35,16 +33,16 @@ class TaskController extends Controller
         //Необходимый костыль из-за особенности проекта
         $dataRequest = new TaskRequest;
 
-        session()->flash('old_task_form_' . $id, $request->all());
+        session()->flash('old_task_form_'.$id, $request->all());
         session()->flash('empty_old_for_create_task_form', '');
 
         Validator::make(
             $request->except('_token'),
             $dataRequest->rules(),
             $dataRequest->messages()
-        )->validateWithBag('task_form_' . $id);
+        )->validateWithBag('task_form_'.$id);
 
-        session()->forget('old_task_form_' . $id);
+        session()->forget('old_task_form_'.$id);
         session()->forget('empty_old_for_create_task_form');
 
         Task::find($id)->update($request->all());

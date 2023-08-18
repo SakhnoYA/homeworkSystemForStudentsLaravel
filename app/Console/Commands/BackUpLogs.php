@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-use function dd;
-
-
 class BackUpLogs extends Command
 {
     /**
@@ -32,21 +29,22 @@ class BackUpLogs extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
-        if (!App::isLocal()) {
+        if (! App::isLocal()) {
             $localDisk = Storage::disk('local');
             $localFiles = $localDisk->allFiles('logs');
             Arr::forget($localFiles, 0);
             $cloudDisk = Storage::disk('sftp');
-            $pathPrefix = 'logs' . DIRECTORY_SEPARATOR . Carbon::now() . DIRECTORY_SEPARATOR;
+            $pathPrefix = 'logs'.DIRECTORY_SEPARATOR.Carbon::now().DIRECTORY_SEPARATOR;
+
             foreach ($localFiles as $file) {
                 $contents = $localDisk->get($file);
-                $cloudLocation = $pathPrefix . Str::after($file, '/');
+                $cloudLocation = $pathPrefix.Str::after($file, '/');
                 $cloudDisk->put($cloudLocation, $contents);
                 $localDisk->delete($file);
-                $localDisk->put('logs/laravel.log','');
-                $localDisk->put('logs/sql.log','');
+                $localDisk->put('logs/laravel.log', '');
+                $localDisk->put('logs/sql.log', '');
             }
         } else {
             Log::info('BackUpLogs not backing up in local env');

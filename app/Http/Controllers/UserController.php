@@ -51,8 +51,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RegistrationRequest $request, AttachCoursesAction $attachCoursesAction)
-    {
+    public function store(
+        RegistrationRequest $request,
+        AttachCoursesAction $attachCoursesAction
+    ) {
         $filename_to_store = '';
 
         if ($request->hasFile('image')) {
@@ -62,7 +64,7 @@ class UserController extends Controller
 
             $extension = $request->file('image')->getClientOriginalExtension();
 
-            $filename_to_store = 'avatars/' . $filename . '_' . uniqid() . '.' . $extension;
+            $filename_to_store = 'avatars/'.$filename.'_'.uniqid().'.'.$extension;
 
             Storage::put($filename_to_store, fopen($request->file('image'), 'r+'));
         }
@@ -71,11 +73,13 @@ class UserController extends Controller
 
         $attachCoursesAction($request, $user, true);
 
-        if (!$request->get('is_confirmed')) {
+        if (! $request->get('is_confirmed')) {
             session()->flash('success', 'Заявка на регистрацию отправлена');
+
             return redirect()->route('login');
         }
         session()->flash('success', 'Пользователь создан');
+
         return redirect()->route('users.index');
     }
 
@@ -90,7 +94,6 @@ class UserController extends Controller
 
         return view('admin.edit_user', ['user' => User::find($id), 'unattachedCourses' => $unattachedCourses]);
     }
-
 
     /**
      * Update the specified resource in storage.
@@ -116,6 +119,7 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         User::destroy($id);
+
         return redirect()->route('users.index')->with('success', 'Пользователь удален');
     }
 }

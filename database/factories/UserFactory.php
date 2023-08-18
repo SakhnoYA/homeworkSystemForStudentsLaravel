@@ -3,10 +3,9 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends Factory<\App\Models\User>
  */
 class UserFactory extends Factory
 {
@@ -18,12 +17,12 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'id'=> $this->faker->numberBetween(),
+            'id' => $this->faker->numberBetween(),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'middle_name' => $this->faker->optional()->middleName,
             'password' => $this->faker->password(),
-            'user_type_id' => $this->faker->numberBetween(2,3),
+            'user_type_id' => $this->faker->numberBetween(2, 3),
             'ip' => $this->faker->optional()->ipv4,
             'is_confirmed' => false,
             'remember_token' => $this->faker->word(),
@@ -32,5 +31,4 @@ class UserFactory extends Factory
             'deleted_at' => null,
         ];
     }
-
 }

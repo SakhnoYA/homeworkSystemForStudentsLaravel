@@ -6,7 +6,6 @@ use App\Models\User;
 use Cache;
 use Illuminate\Http\Request;
 
-
 class RegistrationController extends Controller
 {
     /**
@@ -17,7 +16,7 @@ class RegistrationController extends Controller
         return view('admin.registrations', [
             'users' => User::where(
                 ['is_confirmed' => false]
-            )->with('user_type')->paginate(config('constants.options.paginate_number'))
+            )->with('user_type')->paginate(config('constants.options.paginate_number')),
         ]);
     }
 
@@ -48,7 +47,7 @@ class RegistrationController extends Controller
 
     public function destroyAll()
     {
-        if (!User::where(
+        if (! User::where(
             ['is_confirmed' => false]
         )->delete()) {
             return redirect()->back();

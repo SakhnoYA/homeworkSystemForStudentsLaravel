@@ -32,5 +32,4 @@ class UserObserver
         $cacheKeyAll = "cached_users__page_$lastPage";
         Cache::forget($cacheKeyAll);
     }
-
 }

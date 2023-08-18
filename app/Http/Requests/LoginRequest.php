@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'login' => ['bail', 'required', 'integer', 'exists:users,id', 'max:2147483647', 'min:1', new Confirmed],
-            'password' => ['bail', 'required', 'min:4', 'max:30']
+            'password' => ['bail', 'required', 'min:4', 'max:30'],
         ];
     }
 
